@@ -24,12 +24,15 @@ public class FileInput {
             int total = sc.nextInt();
             // adjustable according to the features we need to input.
             for (int i = 0; i < total; i++) {
-                String firstName, lastName;
-                int grade;
+                String firstName, lastName,isStay;
+                int grade, sex;
                 firstName = sc.next();
                 lastName = sc.next();
                 grade = sc.nextInt();
-                Student student = new Student(firstName,lastName,grade);
+                sex = sc.nextInt();
+                isStay = sc.next();
+
+                Student student = new Student(firstName,lastName,grade,sex,isStay);
                 studentProfile.put((student.firstName+student.lastName),student);
             }
         } catch (FileNotFoundException e) {
@@ -46,7 +49,8 @@ public class FileInput {
             for (int i = 0; i < totalDorms; i++) {
                 String dormName = sc.next();
                 int dormRooms = sc.nextInt();
-                Dorms dorm = new Dorms(dormName, dormRooms);
+                int dormType = sc.nextInt();
+                Dorms dorm = new Dorms(dormName, dormRooms,dormType);
                 ArrayList<Rooms> roomList = new ArrayList<>();
                 for (int j = 0; j < dormRooms; j++) {
                     String roomName = sc.next();

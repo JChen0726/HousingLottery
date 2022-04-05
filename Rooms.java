@@ -17,6 +17,7 @@ public class Rooms {
     public String toString(){
         return name;
     } // this method returns name of the room when printing Room object, might
+
     // change that later.
     public void assignPersonToRoom(Student student){
         if(!isFull&& arr[0]==null){
