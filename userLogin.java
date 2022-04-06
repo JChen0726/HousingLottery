@@ -17,6 +17,7 @@ public class userLogin{
             System.out.println("Login Success!");
         }
     }
+
     private void prompt(){
 
         Scanner sc = new Scanner(System.in);

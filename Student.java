@@ -18,7 +18,6 @@ public class Student {
         this.currentDorm = currentDorm;
     }
 
-
     public String toString (){
         return "\n"+"INFO: "+firstName+" "+lastName+" "+ "\n" + "Grade: "+grade+"\n"+" isStaying?: "+isStaying+"\n\n";
 
