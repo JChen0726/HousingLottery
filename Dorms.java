@@ -7,7 +7,6 @@ public class Dorms {
         this.totalRooms = totalRooms;
         this.gender = gender;
     }
-
     public String toString (){
         return name;
     }

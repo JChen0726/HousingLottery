@@ -1,17 +1,21 @@
 public class Student {
+    private final String password;
     private final String firstName;
     private final String lastName;
     private final int grade;
     private final boolean isStaying;
     private final int sex;
+    String currentDorm;
     // profile that we need to account for... open to any recommendations;
 
-    Student (String firstName, String lastName, int grade, int sex, String isStaying) {
+    Student (String password, String firstName, String lastName, int grade, int sex, String isStaying, String currentDorm) {
+        this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.grade = grade;
         this.isStaying = isStaying.equals(("Yes"));
         this.sex = sex;
+        this.currentDorm = currentDorm;
     }
 
 
@@ -24,5 +28,8 @@ public class Student {
     public int getGrade() {return grade;}
     public boolean getIsStaying() {return isStaying;}
     public int getSex() {return sex;}
+    public String getPassword(){
+        return password;
+    }
 
 }

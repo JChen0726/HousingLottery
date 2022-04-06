@@ -25,23 +25,24 @@ public class FileInput {
             // adjustable according to the features we need to input.
             for (int i = 0; i < total; i++) {
                 String userID = sc.next();
-                String firstName, lastName,isStay;
+                String firstName, lastName,isStay,currentDorm,password;
+
                 int grade, sex;
+                password = sc.next();
                 firstName = sc.next();
                 lastName = sc.next();
                 grade = sc.nextInt();
                 sex = sc.nextInt();
                 isStay = sc.next();
-                Student student = new Student(firstName,lastName,grade,sex,isStay);
+                currentDorm = sc.next();
+                Student student = new Student(password,firstName,lastName,grade,sex,isStay,currentDorm);
                 studentProfile.put(userID,student);
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             System.out.println("StudentProfile file not found.");
         }
-
     }
-
 
     private void readInDormAndRooms(String dormAndRoomsLocation) {
         try {

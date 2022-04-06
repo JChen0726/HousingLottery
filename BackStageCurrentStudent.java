@@ -13,21 +13,12 @@ public class BackStageCurrentStudent {
         this.Go = new HashMap<>();
     }
 
-    // this should be the core part of the algorithm that takes in the ... and output
-    // now we need to figure out the full import  and output... and then how to approach this with the algorithm
-    // compare or contrast the inputs and maybe the most important thing is to have the algorithm that can be used to
-    // solve the problem
-    // need to answer these three questions for the main direct ... find better ways to store data>
-    // But either way it will work because I think I know what I am doing
-
-
     public void checkStay(){
         for(String key : studentProfile.keySet()){
             if(studentProfile.get(key).getIsStaying()){
                 Go.put(key, studentProfile.get(key));
             }
             else{
-
                 //assign to current dorm; and then assign to the room.
             }
         }
