@@ -13,9 +13,6 @@ public class userLogin{
         newStudent = new BackStageStudent(fileinput.newStudentProfile ,fileinput.direct);
         prompt();
         loginStatus();
-        if(loginSuccess){
-            System.out.println("Login Success!");
-        }
     }
 
     private void prompt(){
@@ -29,6 +26,7 @@ public class userLogin{
     }
 
 
+
     private int getInputIdentity(){
         Year curyear = Year.now();
         int newStudentYear = curyear.getValue() + 5 - 2000;
@@ -39,8 +37,6 @@ public class userLogin{
         }else{
             return 1;
         }
-
-
     }
 
     private void loginStatus(){
@@ -69,7 +65,7 @@ public class userLogin{
                     System.out.println("wrong password or username, please try again!");
                     // login fail
                 }
-            }
+            }else System.out.println("Login Failed");
 
         }
     }
