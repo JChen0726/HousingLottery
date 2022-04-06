@@ -1,21 +1,29 @@
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Hashtable;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class FileInput {
 
-    Hashtable<String, Student> studentProfile;
-    Hashtable<Dorms, ArrayList<Rooms>> direct;
-    FileInput(String location1, String location2) {
-        studentProfile = new Hashtable<>();
-        direct = new Hashtable<>();
+    HashMap<String, Student> studentProfile;
+    HashMap<Dorms, ArrayList<Rooms>> direct;
+
+    HashMap<String, Student> newStudentProfile;
+
+    FileInput(String location1, String location2, String location3) {
+        studentProfile = new HashMap<>();
+
+        direct = new HashMap<>();
+
+        newStudentProfile = new HashMap<>();
         readInStudentProfile(location1);
         readInDormAndRooms(location2);
+        readInNewStudentProfile(location3);
         //this is the testing one
         System.out.println(studentProfile);
         System.out.println(direct);
+        System.out.println(newStudentProfile);
     }
 
     private void readInStudentProfile(String studentProfileLocation) {
@@ -66,6 +74,32 @@ public class FileInput {
             e.printStackTrace();
             System.out.println("DormsandRooms file not found.");
 
+        }
+    }
+
+
+    private void readInNewStudentProfile(String newStudentProfileLocation) {
+        try {
+            Scanner sc = new Scanner(new FileInputStream(newStudentProfileLocation));
+            int total = sc.nextInt();
+            // adjustable according to the features we need to input.
+            for (int i = 0; i < total; i++) {
+                String userID = sc.next();
+                String firstName, lastName,isStay,currentDorm,password;
+                int grade, sex;
+                password = sc.next();
+                firstName = sc.next();
+                lastName = sc.next();
+                grade = sc.nextInt();
+                sex = sc.nextInt();
+                isStay = sc.next();
+                currentDorm = sc.next();
+                Student student = new Student(password,firstName,lastName,grade,sex,isStay,currentDorm);
+                newStudentProfile.put(userID,student);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            System.out.println("StudentProfile file not found.");
         }
     }
 

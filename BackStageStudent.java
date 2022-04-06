@@ -2,12 +2,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Hashtable;
 
-public class BackStageCurrentStudent {
-    Hashtable<String, Student> studentProfile; // student class maybe that would be an object
-    Hashtable<Dorms, ArrayList<Rooms>> studentDorm;
+public class BackStageStudent {
+    HashMap<String, Student> studentProfile; // student class maybe that would be an object
+    HashMap<Dorms, ArrayList<Rooms>> studentDorm;
     HashMap<String, Student> Go;
 
-    BackStageCurrentStudent(Hashtable<String, Student> studentProfile, Hashtable<Dorms, ArrayList<Rooms>> dormDirect){
+    BackStageStudent(HashMap<String, Student> studentProfile, HashMap<Dorms, ArrayList<Rooms>> dormDirect){
         this.studentProfile = studentProfile;
         this.studentDorm = dormDirect;
         this.Go = new HashMap<>();
@@ -22,9 +22,6 @@ public class BackStageCurrentStudent {
                 //assign to current dorm; and then assign to the room.
             }
         }
-
-
-
     }
 
 
