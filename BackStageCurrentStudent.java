@@ -22,6 +22,17 @@ public class BackStageCurrentStudent {
 
 
     public void checkStay(){
+        for(String key : studentProfile.keySet()){
+            if(studentProfile.get(key).getIsStaying()){
+                Go.put(key, studentProfile.get(key));
+            }
+            else{
+
+                //assign to current dorm; and then assign to the room.
+            }
+        }
+
+
 
     }
 
