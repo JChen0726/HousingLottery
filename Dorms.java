@@ -10,10 +10,8 @@ public class Dorms {
     public String toString (){
         return name;
     }
-
     public int getTotalRooms(){
         return totalRooms;
     }
-
 
 }
