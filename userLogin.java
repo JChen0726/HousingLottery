@@ -19,7 +19,7 @@ public class userLogin{
     userLogin(){
         // 1
         //allow users to input username, and replace the name in the string below with theirs
-        FileInput fileinput = new FileInput("/Users/brynkerslake/Documents/Github/HousingLottery/StudentProfileInput","/Users/brynkerslake/Documents/Github/HousingLottery/dormAndRooms","/Users/brynkerslake/Documents/Github/HousingLottery/newStudentProfileInput");
+        FileInput fileinput = new FileInput("/Users/justinchen/Documents/Github/HousingLottery/StudentProfileInput","/Users/justinchen/Documents/Github/HousingLottery/dormAndRooms","/Users/justinchen/Documents/Github/HousingLottery/newStudentProfileInput");
         curStudent = new BackStageStudent(fileinput.studentProfile,fileinput.direct);
         newStudent = new BackStageStudent(fileinput.newStudentProfile ,fileinput.direct);
         loginPrompt();
@@ -53,16 +53,24 @@ public class userLogin{
     private void loginStatus(){
         // 3
         //needs reworking
-        switch (getInputIdentity()){
+        switch (getInputIdentity()) {
             case 0:
-                if (pword.equals("admin")) loginSuccess = true;
+                if (pword.equals("admin")) {
+                    loginSuccess = true;
+                    System.out.println("Welcome Admin!");
+                }
                 else {
                     System.out.println("wrong password or username");
                 }
+                break;
             case 1:
                 checkLoginStatus(curStudent);
+                break;
+
             case 2:
                 checkLoginStatus(newStudent);
+                break;
+
 
         }
     }
@@ -79,9 +87,9 @@ public class userLogin{
                     loginSuccess = true;
                 } else {
                     System.out.println("wrong password or username, please try again!");
-                    // login fail
                 }
-            }else System.out.println("Login Failed");
+                break;
+            }
 
         }
     }
