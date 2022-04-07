@@ -19,7 +19,7 @@ public class userLogin{
     userLogin(){
         // 1
         //allow users to input username, and replace the name in the string below with theirs
-        FileInput fileinput = new FileInput("/Users/justinchen/Documents/Github/HousingLottery/StudentProfileInput","/Users/justinchen/Documents/Github/HousingLottery/dormAndRooms","/Users/justinchen/Documents/Github/HousingLottery/newStudentProfileInput");
+        FileInput fileinput = new FileInput("/Users/brynkerslake/Documents/Github/HousingLottery/StudentProfileInput","/Users/brynkerslake/Documents/Github/HousingLottery/dormAndRooms","/Users/brynkerslake/Documents/Github/HousingLottery/newStudentProfileInput");
         curStudent = new BackStageStudent(fileinput.studentProfile,fileinput.direct);
         newStudent = new BackStageStudent(fileinput.newStudentProfile ,fileinput.direct);
         loginPrompt();
@@ -80,7 +80,6 @@ public class userLogin{
         //needs reworking
         for (String key: student.studentProfile.keySet()) {
             String truePword = student.studentProfile.get(key).getPassword();
-            System.out.println(username+" "+key);
             if (username.equals(key)) {
                 if (pword.equals(truePword)) {
                     System.out.println("Welcome " + key + "!"); // login success
