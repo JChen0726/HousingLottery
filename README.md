@@ -1,2 +1,1 @@
-# HousingLottery
-HAY GUYS, LETS GET THIS WORKING!
+ATCS Final Project - 2022 - V. Hu, J. Chen, O. Yang, B. Kerslake
