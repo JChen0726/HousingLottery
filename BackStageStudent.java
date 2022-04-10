@@ -15,16 +15,6 @@ public class BackStageStudent {
         this.go = new HashMap<>();
     }
 
-    public void checkStay() {
-        for (String key : studentProfile.keySet()) {
-            if (!studentProfile.get(key).getIsStaying()) {
-                go.put(key, studentProfile.get(key));
-            } else {
-                //assign to current dorm; and then assign to the room.
-            }
-        }
-    }
-
     public String inputLoop(String a, String b){
         Scanner sc = new Scanner(System.in);
         while (true) {
@@ -50,6 +40,7 @@ private class StudentInterface{
         this.go = new HashMap<>();
         ArrayList<String> inputs = new ArrayList<>();
         System.out.println("Welcome to the Student Housing Interface, "+studentProfile.get(key).getFirstName()+"!");
+        inputPrompt();
         }
         /**
 
