@@ -2,21 +2,32 @@ import java.time.Year;
 import java.util.Scanner;
 
 public class userLogin{
-    String username,pword;
-    private boolean loginSuccess = false;
 
-    BackStageStudent curStudent;
-    BackStageStudent newStudent;
+    /**General TO-DOs in no order (feel free to add/remove once finished or needed):
+
+     1. Once in-house db is set up, hash passwords upon entry/work on general hygiene updates
+     2. Add in-house db for user info once entered
+     3. More work on better encapsulation
+
+    **/
+
+    private String username,pword;
+    private boolean loginSuccess = false;
+    private BackStageStudent curStudent;
+    private BackStageStudent newStudent;
+
     userLogin(){
-        FileInput fileinput = new FileInput("/Users/justinchen/Documents/GitHub/HousingLottery/StudentProfileInput","/Users/justinchen/Documents/GitHub/HousingLottery/dormAndRooms","/Users/justinchen/Documents/GitHub/HousingLottery/newStudentProfileInput");
+        // 1
+        //allow users to input username, and replace the name in the string below with theirs
+        FileInput fileinput = new FileInput("/Users/brynkerslake/Documents/Github/HousingLottery/StudentProfileInput","/Users/brynkerslake/Documents/Github/HousingLottery/dormAndRooms","/Users/brynkerslake/Documents/Github/HousingLottery/newStudentProfileInput");
         curStudent = new BackStageStudent(fileinput.studentProfile,fileinput.direct);
         newStudent = new BackStageStudent(fileinput.newStudentProfile ,fileinput.direct);
-        prompt();
+        loginPrompt();
         loginStatus();
     }
 
-    private void prompt(){
-
+    private void loginPrompt(){
+        // 2
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter your username and password");
         System.out.println("Username: ");
@@ -25,14 +36,14 @@ public class userLogin{
         pword = sc.next();
     }
 
-
-
     private int getInputIdentity(){
+        // 4
+        //needs rebuilding
         Year curyear = Year.now();
         int newStudentYear = curyear.getValue() + 5 - 2000;
         if(username.equals("tcleary@taboracademy.org")){
             return 0; // stands for admin
-        }else if(username.indexOf(newStudentYear)!=-1){
+        }else if(username.indexOf(newStudentYear)!=-1){ //what is this? -bryn
             return 2; // stands for newStudent
         }else{
             return 1;
@@ -40,21 +51,33 @@ public class userLogin{
     }
 
     private void loginStatus(){
-        switch (getInputIdentity()){
+        // 3
+        //needs reworking
+        switch (getInputIdentity()) {
             case 0:
-                if (pword.equals("admin")) loginSuccess = true;
+                if (pword.equals("admin")) {
+                    loginSuccess = true;
+                    System.out.println("Welcome Admin!");
+                }
                 else {
                     System.out.println("wrong password or username");
                 }
+                break;
             case 1:
-                checkstatus(curStudent);
+                checkLoginStatus(curStudent);
+                break;
+
             case 2:
-                checkstatus(newStudent);
+                checkLoginStatus(newStudent);
+                break;
+
 
         }
     }
 
-    private void checkstatus(BackStageStudent student) {
+    private void checkLoginStatus(BackStageStudent student) {
+        // 5
+        //needs reworking
         for (String key: student.studentProfile.keySet()) {
             String truePword = student.studentProfile.get(key).getPassword();
             if (username.equals(key)) {
@@ -63,13 +86,10 @@ public class userLogin{
                     loginSuccess = true;
                 } else {
                     System.out.println("wrong password or username, please try again!");
-                    // login fail
                 }
-            }else System.out.println("Login Failed");
+                break;
+            }
 
         }
     }
-
-
-
 }

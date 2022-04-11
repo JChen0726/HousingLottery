@@ -26,7 +26,7 @@ public class FileInput {
         System.out.println(newStudentProfile);
     }
 
-    private void readInStudentProfile(String studentProfileLocation) {
+    private void readInStudentProfile(String studentProfileLocation) { //allow for dynamic number of inputs
         try {
             Scanner sc = new Scanner(new FileInputStream(studentProfileLocation));
             int total = sc.nextInt();
