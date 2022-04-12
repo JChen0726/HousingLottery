@@ -1,14 +1,11 @@
 import java.time.Year;
 import java.util.Scanner;
 
-public class userLogin{
+public class dataInput{
 
     /**General TO-DOs in no order (feel free to add/remove once finished or needed):
-
-     1. Once in-house db is set up, hash passwords upon entry/work on general hygiene updates
-     2. Add in-house db for user info once entered
-     3. More work on better encapsulation
-
+     1. Add in-house db for user info once entered
+     2. More work on better encapsulation
     **/
 
     private String username,pword;
@@ -16,7 +13,7 @@ public class userLogin{
     private BackStageStudent curStudent;
     private BackStageStudent newStudent;
 
-    userLogin(){
+    dataInput(){
         // 1
         //allow users to input username, and replace the name in the string below with theirs
         FileInput fileinput = new FileInput("/Users/brynkerslake/Documents/Github/HousingLottery/StudentProfileInput","/Users/brynkerslake/Documents/Github/HousingLottery/dormAndRooms","/Users/brynkerslake/Documents/Github/HousingLottery/newStudentProfileInput");
