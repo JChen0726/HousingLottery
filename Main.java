@@ -1,7 +1,7 @@
 public class Main {
 
     Main(){
-        new userLogin();
+        new dataInput();
     }
     public static void main(String[] args) {
 
