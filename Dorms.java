@@ -15,5 +15,7 @@ public class Dorms {
         return totalRooms;
     }
 
+    Student.Stats stats = new Student.Stats();
+    
 
 }
