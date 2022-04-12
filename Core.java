@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.SplittableRandom;
+import java.lang.Math;
 
 public class Core {
 
@@ -14,13 +15,15 @@ public class Core {
 
 
     private int totaldiff(String key1, String key2){
+
+
         Student Justin = studentStatsMap.get(key1);
         Student Bryn = studentStatsMap.get(key2);
-        int cleandiff = Justin.getClean() - Bryn.getClean();
-        int guestdiff = Justin.getGuest() - Bryn.getGuest();
-        int getupdiff = Justin.getGetUp() - Bryn.getGetUp();
-        int sleepdiff = Justin.getStayUp() - Bryn.getStayUp();
-        int sportsorartdiff = Justin.getSportsOrArtsy() - Bryn.getSportsOrArtsy();
+        int cleandiff = Math.abs(Justin.getClean() - Bryn.getClean());
+        int guestdiff = Math.abs(Justin.getGuest() - Bryn.getGuest());
+        int getupdiff = Math.abs(Justin.getGetUp() - Bryn.getGetUp());
+        int sleepdiff = Math.abs(Justin.getStayUp() - Bryn.getStayUp());
+        int sportsorartdiff = Math.abs(Justin.getSportsOrArtsy() - Bryn.getSportsOrArtsy());
         return cleandiff + guestdiff + getupdiff + sleepdiff + sportsorartdiff;
     }
 
@@ -48,4 +51,8 @@ public class Core {
         }
         return paired;
     }
+
+
+
+
 }
