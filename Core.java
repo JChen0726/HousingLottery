@@ -12,14 +12,12 @@ public class Core {
     ArrayList<Student> unpaired = new ArrayList<>();
 
     Core(ArrayList<Student> students){
-        this.studentStatsMap = studentStatsMap;
+        this.studentStatsMap = students;
         findPairs();
     }
 
 
     private int totaldiff(int key1, int key2){
-
-
         Student Justin = studentStatsMap.get(key1);
         Student Bryn = studentStatsMap.get(key2);
         int cleandiff = Math.abs(Justin.getClean() - Bryn.getClean());
@@ -37,7 +35,10 @@ public class Core {
             int mindiff = Integer.MAX_VALUE;
             StudentPair temp = null;
             int minMatch=-1;
-            for(int j = i ;j < studentStatsMap.size(); j++){
+            if(studentStatsMap.get(i).getPairedStatus()){
+                continue;
+            }
+            for(int j = i+1 ;j < studentStatsMap.size(); j++){
                 if(!studentStatsMap.get(j).getPairedStatus()){
                     if(mindiff > totaldiff(i, j)){
                         mindiff = totaldiff(i, j);
@@ -46,8 +47,8 @@ public class Core {
                     }
                 }
             }
+            System.out.println(mindiff);
             studentStatsMap.get(i).setPaired();
-
             studentStatsMap.get(minMatch).setPaired();
             paired.add(temp);
         }

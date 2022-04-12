@@ -6,4 +6,7 @@ public class StudentPair {
         student1 = s1;
         student2 = s2;
     }
+
+    
+
 }
