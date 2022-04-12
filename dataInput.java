@@ -4,16 +4,18 @@ import java.util.Random;
 
 public class dataInput{
 
+    ArrayList<Student> master;
    dataInput() {
         System.out.println(stringmaker()+"@taboracademy.org");
-        ArrayList<ArrayList> master = new ArrayList();
+        master = new ArrayList();
         Random rand = new Random();
         for (int q = 0; q < 100; q++) {
-            master.add(new ArrayList());
-            master.get(q).add(stringmaker() + "@taboracademy.org");
-            for (int v = 0; v < 7; v++) {
-                master.get(q).add(rand.nextInt(1, 6));
-            }
+            Student s = new Student();
+            s.setEmail(stringmaker() + "@taboracademy.org");
+            s.setRoomPreference(rand.nextInt(5), rand.nextInt(5), rand.nextInt(5));
+            s.setSleepinghabit(rand.nextInt(5), rand.nextInt(5));
+            s.setSportsOrArtsy(rand.nextInt(5));
+            master.add(s);
         }
     }
     public static String stringmaker(){
