@@ -1,16 +1,16 @@
 public class Student {
-    /*private final String password;
+    private final String password;
     private final String firstName;
     private final String lastName;
     private final int grade;
     private boolean isStaying;
     private final int sex;
     private String preferences;
-    String currentDorm;*/
+    String currentDorm;
     // profile that we need to account for... open to any recommendations
 
     Student () {
-        /*
+
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;

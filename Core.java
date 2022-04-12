@@ -5,41 +5,45 @@ import java.util.SplittableRandom;
 public class Core {
 
     HashMap<String,Student> studentStatsMap;
-    ArrayList<String> paired = new ArrayList<>();
-    ArrayList<String> unpaired = new ArrayList<>();
+    ArrayList<StudentPair> paired = new ArrayList<>();
+    ArrayList<Student> unpaired = new ArrayList<>();
 
     Core(HashMap<String,Student> studentStatsMap){
         this.studentStatsMap = studentStatsMap;
     }
+    
 
-    private ArrayList<String> addToList() {
-        for (String key1 : studentStatsMap.keySet()) {
-            for (String key2 : studentStatsMap.keySet()) {
-                if (!key1.equals(key2)) {
-                    if(match(key1, key2)) {
-                        paired.add(key1 + " pairs with" + key2);
-                        studentStatsMap.remove(key1);
-                        studentStatsMap.remove(key2);
-                    }else {
-                        unpaired.add(key1);
-                        studentStatsMap.remove(key1);
-                    }
-                }
-            }
-        }
-        return paired;
-    }
-
-    private boolean match(String key1, String key2){
+    private int totaldiff(String key1, String key2){
         Student Justin = studentStatsMap.get(key1);
         Student Bryn = studentStatsMap.get(key2);
-
         int cleandiff = Justin.getClean() - Bryn.getClean();
         int guestdiff = Justin.getGuest() - Bryn.getGuest();
         int getupdiff = Justin.getGetUp() - Bryn.getGetUp();
         int sleepdiff = Justin.getStayUp() - Bryn.getStayUp();
         int sportsorartdiff = Justin.getSportsOrArtsy() - Bryn.getSportsOrArtsy();
 
-        return cleandiff <= 1 && guestdiff <= 1 && getupdiff <= 1 && sleepdiff <= 1 && sportsorartdiff <= 1;
+        return cleandiff + guestdiff + getupdiff + sleepdiff + sportsorartdiff;
+    }
+
+
+    private ArrayList<StudentPair> findPairs(){
+        for(String key1 : studentStatsMap.keySet()){
+            int mindiff = Integer.MAX_VALUE;
+            StudentPair temp = null;
+
+            for(String key2 : studentStatsMap.keySet()){
+                if(!key1.equals(key2)){
+                    if(mindiff > totaldiff(key1, key2)){
+                        mindiff = totaldiff(key1, key2);
+                        temp = new StudentPair(studentStatsMap.get(key1), studentStatsMap.get(key2));
+                    }
+
+                }
+            }
+            if(temp != null){
+                paired.add(temp);
+            }
+        }
+        return paired;
     }
 }
