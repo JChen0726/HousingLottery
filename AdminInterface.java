@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class AdminInterface {
 
     AdminInterface(){
-        System.out.println("Welcom - admin");
+        System.out.println("Welcome, ");
     }
 
     public void startGolottery (){
