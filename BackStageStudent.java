@@ -14,5 +14,8 @@ public class BackStageStudent {
         this.studentDorm = dormDirect;
         this.go = new HashMap<>();
     }
+
+    
+
 }
 
