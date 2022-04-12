@@ -70,8 +70,6 @@ public class userLogin{
             case 2:
                 checkLoginStatus(newStudent);
                 break;
-
-
         }
     }
 

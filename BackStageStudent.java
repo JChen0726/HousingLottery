@@ -77,7 +77,7 @@ private class StudentInterface{
                 if (inputs.get(1).equals("yes")) {
                     System.out.println();
                 } else {
-                    continue;
+
                 }
             }
         }
