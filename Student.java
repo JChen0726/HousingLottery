@@ -7,7 +7,7 @@ public class Student {
     private final int sex;
     private String preferences;
     String currentDorm;
-    // profile that we need to account for... open to any recommendations;
+    // profile that we need to account for... open to any recommendations
 
     Student (String password, String firstName, String lastName, int grade, int sex, String isStaying, String currentDorm) {
         this.password = password;
