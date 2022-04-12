@@ -11,7 +11,7 @@ public class Core {
     Core(HashMap<String,Student> studentStatsMap){
         this.studentStatsMap = studentStatsMap;
     }
-    
+
 
     private int totaldiff(String key1, String key2){
         Student Justin = studentStatsMap.get(key1);
@@ -21,7 +21,6 @@ public class Core {
         int getupdiff = Justin.getGetUp() - Bryn.getGetUp();
         int sleepdiff = Justin.getStayUp() - Bryn.getStayUp();
         int sportsorartdiff = Justin.getSportsOrArtsy() - Bryn.getSportsOrArtsy();
-
         return cleandiff + guestdiff + getupdiff + sleepdiff + sportsorartdiff;
     }
 
@@ -30,18 +29,21 @@ public class Core {
         for(String key1 : studentStatsMap.keySet()){
             int mindiff = Integer.MAX_VALUE;
             StudentPair temp = null;
-
+            String keysecond = "";
             for(String key2 : studentStatsMap.keySet()){
                 if(!key1.equals(key2)){
                     if(mindiff > totaldiff(key1, key2)){
                         mindiff = totaldiff(key1, key2);
                         temp = new StudentPair(studentStatsMap.get(key1), studentStatsMap.get(key2));
+                        keysecond = key2;
                     }
 
                 }
             }
             if(temp != null){
                 paired.add(temp);
+                studentStatsMap.remove(key1);
+                studentStatsMap.remove(keysecond);
             }
         }
         return paired;
