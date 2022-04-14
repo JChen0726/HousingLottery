@@ -11,9 +11,9 @@ public class dataInput{
         for (int q = 0; q < 500; q++) {
             Student s = new Student();
             s.setEmail(stringmaker() + "@taboracademy.org");
-            s.setRoomPreference(rand.nextInt(5), rand.nextInt(5), rand.nextInt(5));
-            s.setSleepinghabit(rand.nextInt(5), rand.nextInt(5));
-            s.setSportsOrArtsy(rand.nextInt(5));
+            s.setRoomPreference(rand.nextInt(1,5), rand.nextInt(1,5), rand.nextInt(1,5));
+            s.setSleepinghabit(rand.nextInt(1,5), rand.nextInt(1,5));
+            s.setSportsOrArtsy(rand.nextInt(1,5));
             master.add(s);
         }
     }

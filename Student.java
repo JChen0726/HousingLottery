@@ -15,9 +15,10 @@ public class Student {
 
     private String email;
     private int cleanliness, quietness, stayUp, getUp, guestover, sportsOrArtsy;
-    private boolean isChosen;
+    private boolean isChosen, isInternational;
     Student () {
         isChosen = false;
+
     }
 
         // for new student
@@ -40,6 +41,12 @@ public class Student {
         public void setSportsOrArtsy(int sportsOrArtsy){
             this.sportsOrArtsy = sportsOrArtsy;
         }
+
+        public boolean getInternationalStatus(){
+            return isInternational;
+        }
+
+
         public String getEmail() {return email;}
         public int getClean() {return cleanliness;}
         public int getQuiet() {return quietness;}

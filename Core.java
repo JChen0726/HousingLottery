@@ -1,19 +1,40 @@
-import javax.swing.text.html.HTMLDocument;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.SplittableRandom;
 import java.lang.Math;
+
 
 public class Core {
 
     ArrayList<Student> studentStatsMap;
+
     ArrayList<StudentPair> paired = new ArrayList<>();
     ArrayList<Student> unpaired = new ArrayList<>();
 
+
+
     Core(ArrayList<Student> students){
         this.studentStatsMap = students;
+        this.studentStatsMap = internationalPrioritized();
         findPairs();
+    }
+
+    private ArrayList<Student> internationalPrioritized(){
+        return prioritize(studentStatsMap);
+
+    }
+
+    private ArrayList<Student> prioritize(ArrayList<Student> students){
+        ArrayList<Student> prioritized = new ArrayList<>();
+        for (int i = 0; i < students.size(); i++) {
+            if(students.get(i).getInternationalStatus()){
+                prioritized.add(students.get(i));
+            }
+        }
+        for (int i = 0; i < students.size(); i++) {
+            if(!students.get(i).getInternationalStatus()){
+                prioritized.add(students.get(i));
+            }
+        }
+        return prioritized;
     }
 
 
@@ -47,11 +68,13 @@ public class Core {
                     }
                 }
             }
-            System.out.println(mindiff);
+            System.out.println(mindiff); // testing
             studentStatsMap.get(i).setPaired();
             studentStatsMap.get(minMatch).setPaired();
             paired.add(temp);
         }
         return paired;
     }
+
+
 }
