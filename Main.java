@@ -1,7 +1,10 @@
 public class Main {
 
     Main(){
-        new dataInput();
+        dataInput dataInput = new dataInput();
+
+        pairingAlgo pairingAlgo = new pairingAlgo(dataInput.master);;
+
     }
     public static void main(String[] args) {
 
