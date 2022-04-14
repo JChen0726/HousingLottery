@@ -1,13 +1,15 @@
 import java.util.ArrayList;
 import java.lang.Math;
 
-public class Core {
+public class pairingAlgo {
 
-    ArrayList<Student> studentPool;
-    ArrayList<StudentPair> paired = new ArrayList<>();
-    ArrayList<Student> unpaired = new ArrayList<>();
+    private ArrayList<Student> studentPool;
+    private ArrayList<StudentPair> paired = new ArrayList<>();
+    private ArrayList<Student> unpaired = new ArrayList<>();
 
-    Core(ArrayList<Student> students){
+    //encapsulate multiple algos into their own classes inside corealgo
+
+    pairingAlgo(ArrayList<Student> students){
         this.studentPool = students;
         findPairs();
     }
@@ -24,6 +26,7 @@ public class Core {
         return cleandiff + guestdiff +quietdiff + getupdiff + sleepdiff + sportsorartdiff;
     }
 
+    @SuppressWarnings("UnusedReturnValue")
     private ArrayList<StudentPair> findPairs(){
 
         for(int i = 0; i < studentPool.size(); i++){
@@ -33,7 +36,7 @@ public class Core {
             if(studentPool.get(i).getPairedStatus()){
                 continue;
             }
-            
+
             for(int j = i+1; j < studentPool.size(); j++){ //brute force search for best match
                 if(!studentPool.get(j).getPairedStatus()){
                     if(mindiff > totaldiff(i, j)){
@@ -49,6 +52,7 @@ public class Core {
             studentPool.get(minMatch).setPaired();
             paired.add(temp);
         }
+        System.out.println(paired);
         return paired;
     }
 }
