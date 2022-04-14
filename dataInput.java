@@ -8,12 +8,11 @@ public class dataInput{
    dataInput() {
         master = new ArrayList();
         Random rand = new Random();
-        for (int q = 0; q < 500; q++) {
+        for (int q = 0; q < 100; q++) {
             Student s = new Student();
-            s.setEmail(stringmaker() + "@taboracademy.org");
-            s.setRoomPreference(rand.nextInt(5), rand.nextInt(5), rand.nextInt(5));
-            s.setSleepinghabit(rand.nextInt(5), rand.nextInt(5));
-            s.setSportsOrArtsy(rand.nextInt(5));
+            s.setStrings(stringmaker() + "@taboracademy.org");
+            s.setInts(rand.nextInt(5), rand.nextInt(5), rand.nextInt(5), rand.nextInt(5), rand.nextInt(5),rand.nextInt(5));
+            s.setInternational(Math.random() < 0.5);
             master.add(s);
         }
     }

@@ -1,55 +1,52 @@
-import javax.swing.text.html.HTMLDocument;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.SplittableRandom;
 import java.lang.Math;
 
 public class Core {
 
-    ArrayList<Student> studentStatsMap;
+    ArrayList<Student> studentPool;
     ArrayList<StudentPair> paired = new ArrayList<>();
     ArrayList<Student> unpaired = new ArrayList<>();
 
     Core(ArrayList<Student> students){
-        this.studentStatsMap = students;
+        this.studentPool = students;
         findPairs();
     }
 
-
-    private int totaldiff(int key1, int key2){
-        Student Justin = studentStatsMap.get(key1);
-        Student Bryn = studentStatsMap.get(key2);
-        int cleandiff = Math.abs(Justin.getClean() - Bryn.getClean());
-        int quietdiff = Math.abs(Justin.getQuiet() - Bryn.getQuiet());
-        int guestdiff = Math.abs(Justin.getGuest() - Bryn.getGuest());
-        int getupdiff = Math.abs(Justin.getGetUp() - Bryn.getGetUp());
-        int sleepdiff = Math.abs(Justin.getStayUp() - Bryn.getStayUp());
-        int sportsorartdiff = Math.abs(Justin.getSportsOrArtsy() - Bryn.getSportsOrArtsy());
+    private int totaldiff(int key1, int key2){ //finds total difference between two students
+        Student student1 = studentPool.get(key1);
+        Student student2 = studentPool.get(key2); //creates students as we go, but might be easier to create students prior to this
+        int cleandiff = Math.abs(student1.getClean() - student2.getClean());
+        int quietdiff = Math.abs(student1.getQuiet() - student2.getQuiet());
+        int guestdiff = Math.abs(student1.getGuest() - student2.getGuest());
+        int getupdiff = Math.abs(student1.getGetUp() - student2.getGetUp());
+        int sleepdiff = Math.abs(student1.getStayUp() - student2.getStayUp());
+        int sportsorartdiff = Math.abs(student1.getSportsOrArtsy() - student2.getSportsOrArtsy());
         return cleandiff + guestdiff +quietdiff + getupdiff + sleepdiff + sportsorartdiff;
     }
 
     private ArrayList<StudentPair> findPairs(){
 
-        for(int i = 0; i < studentStatsMap.size(); i++){
+        for(int i = 0; i < studentPool.size(); i++){
             int mindiff = Integer.MAX_VALUE;
             StudentPair temp = null;
             int minMatch=-1;
-            if(studentStatsMap.get(i).getPairedStatus()){
+            if(studentPool.get(i).getPairedStatus()){
                 continue;
             }
-            for(int j = i+1 ;j < studentStatsMap.size(); j++){
-                if(!studentStatsMap.get(j).getPairedStatus()){
+            
+            for(int j = i+1; j < studentPool.size(); j++){ //brute force search for best match
+                if(!studentPool.get(j).getPairedStatus()){
                     if(mindiff > totaldiff(i, j)){
                         mindiff = totaldiff(i, j);
-                        temp = new StudentPair(studentStatsMap.get(i), studentStatsMap.get(j));
+                        temp = new StudentPair(studentPool.get(i), studentPool.get(j));
                         minMatch = j;
                     }
                 }
             }
+
             System.out.println(mindiff);
-            studentStatsMap.get(i).setPaired();
-            studentStatsMap.get(minMatch).setPaired();
+            studentPool.get(i).setPaired();
+            studentPool.get(minMatch).setPaired();
             paired.add(temp);
         }
         return paired;

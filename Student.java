@@ -15,7 +15,8 @@ public class Student {
 
     private String email;
     private int cleanliness, quietness, stayUp, getUp, guestover, sportsOrArtsy;
-    private boolean isChosen;
+    private boolean isChosen, international;
+
     Student () {
         isChosen = false;
     }
@@ -23,23 +24,21 @@ public class Student {
         // for new student
 
 
-        public void setEmail(String email){
+        public void setStrings(String email){
             this.email = email;
         }
-        public void setRoomPreference(int cleanliness,int quietness, int guestover){
+        public void setInts(int cleanliness,int quietness, int guestover, int stayUp, int getUp, int sportsOrArtsy){
             this.cleanliness = cleanliness;
             this.quietness = quietness;
             this.guestover = guestover;
-        }
-        public void setSleepinghabit(int stayUp,int getUp){
             this.stayUp = stayUp;
             this.getUp = getUp;
-        }
-        public void setPaired(){isChosen = true;}
-        public boolean getPairedStatus(){return isChosen;}
-        public void setSportsOrArtsy(int sportsOrArtsy){
             this.sportsOrArtsy = sportsOrArtsy;
         }
+        public void setInternational(boolean international){ this.international=international;}
+        public void setPaired(){isChosen = true;}
+
+        public boolean getPairedStatus(){return isChosen;}
         public String getEmail() {return email;}
         public int getClean() {return cleanliness;}
         public int getQuiet() {return quietness;}
@@ -47,4 +46,5 @@ public class Student {
         public int getStayUp() {return stayUp;}
         public int getGetUp(){return getUp;}
         public int getSportsOrArtsy(){return sportsOrArtsy;}
+        public boolean getInternational(){return international;}
 }
