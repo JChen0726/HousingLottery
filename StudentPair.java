@@ -7,6 +7,10 @@ public class StudentPair {
         student2 = s2;
     }
 
-    
+    public String toString() {
+        return student1.toString() + " and " + student2.toString();
+    }
+
+
 
 }
