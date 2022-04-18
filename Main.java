@@ -1,11 +1,14 @@
 public class Main {
 //dfsfdf
     Main(){
-        new userLogin();
+        dataInput dataInput = new dataInput();
+
+        pairingAlgo pairingAlgo = new pairingAlgo(dataInput.master);;
+
     }
     public static void main(String[] args) {
 
         new Main();
-
+//test
     }
 }

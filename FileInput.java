@@ -3,7 +3,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
-
+/*
 public class FileInput {
 
     HashMap<String, Student> studentProfile;
@@ -102,8 +102,9 @@ public class FileInput {
             System.out.println("StudentProfile file not found.");
         }
     }
+    }
+*/
 
 
 
 
-}
