@@ -7,8 +7,6 @@ public class Core {
     ArrayList<Student> studentStatsMap;
 
     ArrayList<StudentPair> paired = new ArrayList<>();
-    ArrayList<Student> unpaired = new ArrayList<>();
-
 
 
     Core(ArrayList<Student> students){
@@ -19,19 +17,18 @@ public class Core {
 
     private ArrayList<Student> internationalPrioritized(){
         return prioritize(studentStatsMap);
-
     }
 
     private ArrayList<Student> prioritize(ArrayList<Student> students){
         ArrayList<Student> prioritized = new ArrayList<>();
-        for (int i = 0; i < students.size(); i++) {
-            if(students.get(i).getInternationalStatus()){
-                prioritized.add(students.get(i));
+        for (Student student : students) {
+            if (student.getInternationalStatus()) {
+                prioritized.add(student);
             }
         }
-        for (int i = 0; i < students.size(); i++) {
-            if(!students.get(i).getInternationalStatus()){
-                prioritized.add(students.get(i));
+        for (Student student : students) {
+            if (!student.getInternationalStatus()) {
+                prioritized.add(student);
             }
         }
         return prioritized;
@@ -75,6 +72,4 @@ public class Core {
         }
         return paired;
     }
-
-
 }

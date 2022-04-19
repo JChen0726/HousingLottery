@@ -18,7 +18,9 @@ public class AssignmentAlgorithm {
     void roomChoiceCostInput(int firstChoiceWeight, int secondChoiceWeight, int thirdChoiceWeight, int forthChoiceWeight, int notChoiceWeight) {
 
         if (DormRooms.get(i).equals(student.choices.get(0))){
-            CostMatrix[][]=firstChoiceWeight;}
+            CostMatrix[][]=firstChoiceWeight;
+            }
+
     }
 
     void multiplyGradeWeights(int seniorWeight, int juniorWeight, int sophomoreWeight) {
@@ -27,7 +29,6 @@ public class AssignmentAlgorithm {
                 for (int j = 0; j < CostMatrix.length; j++) {
                     CostMatrix[i][j] *= seniorWeight;
                 }
-
             } else if (Students.get(i).grade == 11) {
                 for (int j = 0; j < CostMatrix.length; j++) {
                     CostMatrix[i][j] *= juniorWeight;
@@ -39,6 +40,7 @@ public class AssignmentAlgorithm {
             }
         }
     }
+    h
 
     int[][] optimize(int[][] costs) {
         int[][] optimized = new int[costs.length][costs.length];
