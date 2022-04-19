@@ -33,7 +33,7 @@ public class pairingAlgo {
             int mindiff = Integer.MAX_VALUE;
             StudentPair temp = null;
             int minMatch=-1;
-            if(studentPool.get(i).getPairedStatus()){
+            if(studentPool.get(i).getPairedStatus()){ //add prioritization rule for international/domestic students
                 continue;
             }
 
