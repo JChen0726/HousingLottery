@@ -6,7 +6,6 @@ import java.util.Set;
  * An implemetation of the Kuhn–Munkres assignment algorithm of the year 1957.
  * https://en.wikipedia.org/wiki/Hungarian_algorithm
  *
- *
  * @author https://github.com/aalmi | march 2014
  * @version 1.0
  */

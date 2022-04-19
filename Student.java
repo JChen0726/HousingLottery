@@ -15,12 +15,8 @@ public class Student {
 
     private String email;
     private int cleanliness, quietness, stayUp, getUp, guestover, sportsOrArtsy;
-<<<<<<< HEAD
     private boolean isChosen, isInternational;
-=======
-    private boolean isChosen, international;
 
->>>>>>> 40b0c79d2f5f0a7f9b5ebc2639506c0b3e985754
     Student () {
         isChosen = false;
 
@@ -40,11 +36,10 @@ public class Student {
             this.getUp = getUp;
             this.sportsOrArtsy = sportsOrArtsy;
         }
-        public void setInternational(boolean international){ this.international=international;}
+        public void setInternational(boolean international){ this.isInternational=international;}
         public void setPaired(){isChosen = true;}
 
         public boolean getPairedStatus(){return isChosen;}
-<<<<<<< HEAD
         public void setSportsOrArtsy(int sportsOrArtsy){
             this.sportsOrArtsy = sportsOrArtsy;
         }
@@ -53,9 +48,6 @@ public class Student {
             return isInternational;
         }
 
-
-=======
->>>>>>> 40b0c79d2f5f0a7f9b5ebc2639506c0b3e985754
         public String getEmail() {return email;}
         public int getClean() {return cleanliness;}
         public int getQuiet() {return quietness;}
@@ -63,5 +55,5 @@ public class Student {
         public int getStayUp() {return stayUp;}
         public int getGetUp(){return getUp;}
         public int getSportsOrArtsy(){return sportsOrArtsy;}
-        public boolean getInternational(){return international;}
+        public boolean getInternational(){return isInternational;}
 }
