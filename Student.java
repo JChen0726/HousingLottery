@@ -9,6 +9,7 @@ public class Student {
     private boolean isChosen, isInternational;
 
 
+    private boolean isChosen, isInternational;
     Student () {
         isChosen = false;
 
