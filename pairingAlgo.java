@@ -26,7 +26,7 @@ public class pairingAlgo {
         return cleandiff + guestdiff +quietdiff + getupdiff + sleepdiff + sportsorartdiff;
     }
 
-    @SuppressWarnings("UnusedReturnValue")
+
     private ArrayList<StudentPair> findPairs(){
 
         for(int i = 0; i < studentPool.size(); i++){
@@ -46,7 +46,6 @@ public class pairingAlgo {
                     }
                 }
             }
-
             System.out.println(mindiff);
             studentPool.get(i).setPaired();
             studentPool.get(minMatch).setPaired();

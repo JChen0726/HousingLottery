@@ -1,18 +1,8 @@
+import java.util.ArrayList;
 
 public class Student {
-    /*
-    private final String password;
-    private final String firstName;
-    private final String lastName;
-    private final int grade;
-    private boolean isStaying;
-    private final int sex;
-    private String preferences;
-    String currentDorm;
-    // profile that we need to account for... open to any recommendations
 
-*/
-
+    private ArrayList<String> choices;
     private String email;
     private int cleanliness, quietness, stayUp, getUp, guestover, sportsOrArtsy;
 
@@ -23,10 +13,7 @@ public class Student {
         isChosen = false;
 
     }
-
         // for new student
-
-
         public void setStrings(String email){
             this.email = email;
         }
@@ -59,4 +46,8 @@ public class Student {
         public int getGetUp(){return getUp;}
         public int getSportsOrArtsy(){return sportsOrArtsy;}
         public boolean getInternational(){return isInternational;}
+        public ArrayList<String> getChoices(){
+            return choices;
+        }
+
 }
