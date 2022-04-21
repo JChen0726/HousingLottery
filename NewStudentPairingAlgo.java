@@ -2,14 +2,15 @@ import java.util.ArrayList;
 import java.lang.Math;
 
 
-public class Core {
+public class NewStudentPairingAlgo {
 
     ArrayList<Student> studentStatsMap;
 
     ArrayList<StudentPair> paired = new ArrayList<>();
 
 
-    Core(ArrayList<Student> students){
+    NewStudentPairingAlgo(ArrayList<Student> students){
+       
         this.studentStatsMap = students;
         this.studentStatsMap = internationalPrioritized();
         findPairs();
@@ -72,4 +73,5 @@ public class Core {
         }
         return paired;
     }
+
 }
