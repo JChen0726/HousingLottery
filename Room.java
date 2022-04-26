@@ -1,17 +1,17 @@
-public class Rooms {
-    String name;
-    boolean isSingle;
-    boolean isFull;
-    Student[] arr;
+public class Room {
+    private String name;
+    private boolean isSingle;
+    private boolean isFull;
+    private Student[] Students;
 
-    Rooms(String name, int numPeople){
+    Room(String name, int numPeople){
         this.name = name;
         if (numPeople == 1){
             isSingle = true;
-            arr = new Student[1];
+            Students = new Student[1];
         }else{
             isSingle = false;
-            arr = new Student[2];
+            Students = new Student[2];
         }
     }
     public String toString(){
@@ -20,24 +20,24 @@ public class Rooms {
 
     // change that later.
     public void assignPersonToRoom(Student student){
-        if(!isFull&& arr[0]==null){
-            arr[0] = student;
+        if(!isFull&& Students[0]==null){
+            Students[0] = student;
             if(isSingle){
                 isFull = true;
             }
-        }else if(!isFull && arr[1]==null){
-            arr[1] = student;
+        }else if(!isFull && Students[1]==null){
+            Students[1] = student;
         }else {
             isFull = true;
             System.out.println("Room is full"); // to GUI?
         }
     }
-
+    
     public void removePersonFromRoom(Student student){
-        if(arr[0]==student){
-            arr[0] = null;
-        }else if(arr[1]==student){
-            arr[1] = null;
+        if(Students[0]==student){
+            Students[0] = null;
+        }else if(Students[1]==student){
+            Students[1] = null;
         }else {
             System.out.println("Student not found"); // to GUI?
         }

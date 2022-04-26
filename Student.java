@@ -2,13 +2,14 @@ import java.util.ArrayList;
 
 public class Student {
 
+    String name;
     private ArrayList<String> choices;
     private int grade;
     private String email;
     private int cleanliness, quietness, stayUp, getUp, guestover, sportsOrArtsy;
 
     private boolean isChosen, isInternational;
-    private ArrayList <Rooms> roomChoices;
+    private ArrayList <String> roomChoices = new ArrayList<>(); //change to rooms
 
     Student () {
         isChosen = false;
@@ -42,11 +43,17 @@ public int getGrade(){
         public ArrayList<String> getChoices(){
             return choices;
         }
-
-        public void setRoomChoices(Rooms room){
-            this.roomChoices.add(room);
+        //
+        public void setRoomChoices(String a, String b, String c, String d){ //change to room.getname
+            this.roomChoices.add(a);
+            this.roomChoices.add(b);
+            this.roomChoices.add(c);
+            this.roomChoices.add(d);
         }
-        public ArrayList<Rooms> getRoomChoices(){
+        public ArrayList<String> getRoomChoices(){
             return roomChoices;
+        }
+        public String getName(){
+            return name;
         }
 }
