@@ -69,7 +69,6 @@ public class OldStudentPairingAlgo {
            Direction curDirect = new Direction(oldStudents.get(pairinglist[i][0]),dormRooms.get(pairinglist[i][1]));
            directlist.add(curDirect);
         }
-
         return directlist;
     }
 

@@ -17,13 +17,13 @@ public class dataInput{
         }
         master = new ArrayList<>();
         Random rand = new Random();
-        for (int q = 0; q < 100; q++) {
+        for (int q = 0; q < 20; q++) {
             Student s = new Student();
             //s.setEmail(stringmaker() + "@taboracademy.org");
             //s.setRoomPreference(rand.nextInt(1,5), rand.nextInt(1,5), rand.nextInt(1,5));
             //s.setSleepinghabit(rand.nextInt(1,5), rand.nextInt(1,5));
             s.setStrings(make_strings_for_testing() + "@taboracademy.org");
-            s.setRoomChoices(String.valueOf(rand.nextInt(20)),String.valueOf(rand.nextInt(20)),String.valueOf(rand.nextInt(20)),String.valueOf(rand.nextInt(20)));
+            s.setRoomChoices(String.valueOf(rand.nextInt(1,21)),String.valueOf(rand.nextInt(1,21)),String.valueOf(rand.nextInt(1,21)),String.valueOf(rand.nextInt(1,21)));
             s.setInts(rand.nextInt(5), rand.nextInt(5), rand.nextInt(5), rand.nextInt(5), rand.nextInt(5),rand.nextInt(5));
             s.setInternational(Math.random() < 0.5);
             master.add(s);

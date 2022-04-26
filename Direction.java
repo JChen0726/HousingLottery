@@ -16,7 +16,7 @@ public class Direction {
     }
 
     public String toString(){
-        return studentname.getName()+ " assigned to " + roomName;
+        return studentname.getEmail()+ " assigned to " + roomName;
     }
 
     
