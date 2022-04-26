@@ -11,7 +11,7 @@ public class dataInput{
    dataInput() {
 
        //code creates test data, NOT FOR PRODUCTION
-        master = new ArrayList();
+        master = new ArrayList<>();
         Random rand = new Random();
         for (int q = 0; q < 100; q++) {
             Student s = new Student();
@@ -30,7 +30,8 @@ public class dataInput{
             Student curstu = new Student();
             ArrayList<String> temparray = olly_master_list.get(i);
             curstu.setStrings(temparray.get(0));
-            curstu.setInts(temparray.get((1),temparray.get((2),temparray.get((3),temparray.get((4),temparray.get((5))
+            curstu.setInts(temparray.get((1),temparray.get((2),temparray.get((3),temparray.get((4),temparray.get((5));
+            // this method is not defined;
         }
 
         return studentData;

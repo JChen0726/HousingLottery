@@ -15,7 +15,6 @@ public class Student {
 
     }
         // for new student
-
         public void setStrings(String email){
             this.email = email;}
         public void setInts(int cleanliness,int quietness, int guestover, int stayUp, int getUp, int sportsOrArtsy){

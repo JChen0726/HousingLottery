@@ -50,7 +50,7 @@ public class OldStudentPairingAlgo {
         }
     }
     
-    private int [][] assignRooms(){
+    private ArrayList<Student> [][] assignRooms(){
         HungarianAlgorithm hungarianAlgorithm = new HungarianAlgorithm(costMatrix);
         return  hungarianAlgorithm.findOptimalAssignment();
     }
