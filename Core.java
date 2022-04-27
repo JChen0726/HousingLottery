@@ -1,18 +1,17 @@
 import java.util.ArrayList;
 
 public class Core {
-    /*
-    public ArrayList<Dorm> DormsList = new ArrayList<Dorm>();
+    public  ArrayList<Dorm> DORMS;
+    public ArrayList<Student> STUDENTS;
 
-    Core(){
-        ArrayList<ArrayList> tempDorms = dataInput.getRooms(); //takes in arraylist of rooms and arraylist of students from datainput
-        ArrayList tempStudents = dataInput.getStudents(); //and creates list of dorms, which all have rooms
-        for(int i = 0;i<tempDorms.size();i++){
-            ArrayList<String> tempDorm = tempDorms.get(i);
-            Dorm h = new Dorm(tempDorm.get(0), Integer.parseInt(tempDorm.get(1)), Integer.parseInt(tempDorm.get(2)));
-
-        }
+    Core(ArrayList<Student> students, ArrayList<Dorm> dorms) {
+        this.DORMS = dorms; //inits master list of dorms and students
+        this.STUDENTS = students;
+        run();
     }
-    */
+
+    private void run() {
+
+    }
 
 }

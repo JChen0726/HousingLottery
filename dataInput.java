@@ -1,20 +1,31 @@
-import java.nio.charset.Charset;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Random;
-public class dataInput{
+import java.util.Scanner;
 
-    private ArrayList<ArrayList> studentData;
+public class dataInput {
+    //for production purposes:
+    private ArrayList<Student> StudentMasterList;
+    private ArrayList<Dorm> DormMasterList;
+
+    //for testing purposes:
     public ArrayList<String> roomsPublicTest = new ArrayList<>();
-
     public ArrayList<Student> master; //change to private later
 
-    // test data inputs
-   dataInput() {
 
-       //code creates test data, NOT FOR PRODUCTION
-        for(int i = 1;i<21;i++){
-            roomsPublicTest.add(Integer.toString(i));
-        }
+    //basic get methods
+    public ArrayList<Student> getStudentMasterList() {return StudentMasterList;}
+    public ArrayList<Dorm> getDormMasterList() {return DormMasterList;}
+
+
+
+
+    dataInput() {
+        //code creates test data, NOT FOR PRODUCTION
+        for (int i = 1; i < 21; i++) {roomsPublicTest.add(Integer.toString(i));}
         master = new ArrayList<>();
         Random rand = new Random();
         for (int q = 0; q < 20; q++) {
@@ -23,31 +34,78 @@ public class dataInput{
             //s.setRoomPreference(rand.nextInt(1,5), rand.nextInt(1,5), rand.nextInt(1,5));
             //s.setSleepinghabit(rand.nextInt(1,5), rand.nextInt(1,5));
             s.setStrings(make_strings_for_testing() + "@taboracademy.org");
-            s.setRoomChoices(String.valueOf(rand.nextInt(1,21)),String.valueOf(rand.nextInt(1,21)),String.valueOf(rand.nextInt(1,21)),String.valueOf(rand.nextInt(1,21)));
-            s.setInts(rand.nextInt(5), rand.nextInt(5), rand.nextInt(5), rand.nextInt(5), rand.nextInt(5),rand.nextInt(5));
+            s.setRoomChoices(String.valueOf(rand.nextInt(1, 21)), String.valueOf(rand.nextInt(1, 21)), String.valueOf(rand.nextInt(1, 21)), String.valueOf(rand.nextInt(1, 21)));
+            s.setInts(rand.nextInt(5), rand.nextInt(5), rand.nextInt(5), rand.nextInt(5), rand.nextInt(5), rand.nextInt(5));
             s.setInternational(Math.random() < 0.5);
             master.add(s);
         }
 
     }
-    private ArrayList input_data_from_ollys_excel_program(ArrayList<ArrayList<Object>> olly_master_list){
-        for(int i = 0;i<olly_master_list.size();i++){
+
+    private ArrayList input_data_from_ollys_excel_program(ArrayList<ArrayList<Object>> olly_master_list) {
+        for (ArrayList<Object> objects : olly_master_list) {
             Student curstu = new Student();
-            ArrayList<Object> temparray = olly_master_list.get(i);
+            ArrayList<Object> temparray = objects;
             curstu.setStrings((String) temparray.get(0));
             ArrayList<Integer> tempints = (ArrayList<Integer>) temparray.get(1);
-            curstu.setInts(tempints.get(0),tempints.get(1),tempints.get(2),tempints.get(3),tempints.get(4),tempints.get(5));
-            // this method is not defined;
+            curstu.setInts(tempints.get(0), tempints.get(1), tempints.get(2), tempints.get(3), tempints.get(4), tempints.get(5));
+            StudentMasterList.add(curstu);
         }
 
-        return studentData;
+        return StudentMasterList;
     }
 
 
-    private static String make_strings_for_testing(){
-            byte[] array = new byte[7]; // length is bounded by 7
-            new Random().nextBytes(array);
-        return new String(array, Charset.forName("UTF-8"));
+    public void txtmake() { //for testing dorms
+        Random rand = new Random();
+        try {
+            FileWriter writer = new FileWriter("matsu.txt");
+            writer.write("Matsumura\n");
+            writer.write("20\n");
+            writer.write("Male\n");
+            for (int i = 1; i <= 20; i++) {
+                writer.write(String.valueOf(i) + " " + (rand.nextInt(2) + 1) + "\n");
+            }
+            writer.write(",");
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
+
+
+    /*public void readtxt(){ //for reading in dorm/rooms
+        try{
+            Scanner t = new Scanner(new File("/Users/brynkerslake/Desktop/JAVA/Final Project/matsu.txt"));
+            ArrayList<ArrayList> outer = new ArrayList();
+            ArrayList<String> inner = new ArrayList();
+            while(t.hasNextLine()&&t.next()!=","){
+                inner.add(t.nextLine());
+                outer.add(inner);
+                inner.clear();
+            }
+            System.out.println(outer);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    */
+
+
+    private static String make_strings_for_testing() {
+        String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+        StringBuilder sb = new StringBuilder();
+        Random random = new Random();
+        int length = 8;
+        for(int i = 0; i < length; i++) {
+            int index = random.nextInt(alphabet.length());
+            char randomChar = alphabet.charAt(index);
+            sb.append(randomChar);
+        }
+        String randomString = sb.toString();
+        return randomString;
+    }
 }
+

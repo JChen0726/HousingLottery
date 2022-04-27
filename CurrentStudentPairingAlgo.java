@@ -1,20 +1,100 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-/**
- * An implemetation of the Kuhn–Munkres assignment algorithm of the year 1957.
- * https://en.wikipedia.org/wiki/Hungarian_algorithm
- *
- * @author https://github.com/aalmi | march 2014
- * @version 1.0
- */
-public class HungarianAlgorithm {
+public class CurrentStudentPairingAlgo {
+    int[][] costMatrix;
+    ArrayList<Student> oldStudents;
+    // students variables arraylist <choices>
+    ArrayList<String> dormRooms;
+    int [] choicesWeight,gradeWeight;
 
-    int[][] matrix; // initial matrix (cost matrix)
+    CurrentStudentPairingAlgo(ArrayList<Student>oldStudents, ArrayList<String>dormRooms){
+        choicesWeight = new int[]{1,3,5,7};
+        gradeWeight = new int [] {1,3,5};
+        this.costMatrix = new int[oldStudents.size()][dormRooms.size()];
+        this.oldStudents = oldStudents;
+        this. dormRooms = dormRooms;
+        // need to initialize the two arraylist here
+
+        roomChoiceCostInput();//costs into array
+        multiplyGradeWeights();
+        System.out.println(assignRooms());
+
+    }
+    //student[i] corresponds with row [i]
+    //Room[j] corresponds with column [j]
+    private void roomChoiceCostInput(){
+        for (int i = 0; i <oldStudents.size(); i++){
+            Student curStudent = oldStudents.get(i);
+            for (int j = 0; j < curStudent.getRoomChoices().size()  ; j++) {
+                // 0,1,2,3
+                costMatrix[i][j] = choicesWeight[3];
+                String roomName = curStudent.getRoomChoices().get(j);
+                int idx = dormRooms.indexOf(roomName); //need to fix
+                costMatrix[i][idx] = choicesWeight[j];
+            }
+
+        }
+    }
+    private void multiplyGradeWeights() {
+
+        for (var ref = new Object() { int i = 0; }; ref.i < costMatrix.length; ref.i++) {
+            Student curStudent = oldStudents.get(ref.i);
+
+            if (curStudent.getGrade() == 12) {
+                //lambda done by bryn
+                Arrays.stream(costMatrix[ref.i]).forEach(j -> costMatrix[ref.i][j] = costMatrix[ref.i][j] * gradeWeight[0]);
+            }
+            else if (curStudent.getGrade() == 11) {
+                Arrays.stream(costMatrix[ref.i]).forEach(j -> costMatrix[ref.i][j] = costMatrix[ref.i][j] * gradeWeight[1]);
+            }
+            else if (curStudent.getGrade() == 10) {
+                Arrays.stream(costMatrix[ref.i]).forEach(j -> costMatrix[ref.i][j] = costMatrix[ref.i][j] * gradeWeight[0]);
+            }
+        }
+    }
+    
+    private int[][] runCalculation(){
+        HungarianAlgorithm hungarianAlgorithm = new HungarianAlgorithm(costMatrix);
+        return  hungarianAlgorithm.findOptimalAssignment();
+    }
+
+    private ArrayList<Direction> assignRooms(){
+
+        ArrayList<Direction> directlist= new ArrayList<>();
+        int [][] pairinglist = runCalculation();
+        //lambda done by bryn
+        Arrays.stream(pairinglist).forEach(i -> directlist.add(new Direction(oldStudents.get(i[0]), dormRooms.get(i[1]))));
+        return directlist;
+    }
+}
+
+class Direction {
+
+    StudentPair studentPair;
+    Student studentname;
+    String roomName;
+
+    Direction(Student studentName, String room) {
+        this.studentname = studentName;
+        this.roomName = room;
+    }
+
+    public String toString() {return studentname.getEmail() + " assigned to " + roomName;}
+
+}
+
+
+
+@SuppressWarnings("ForLoopReplaceableByForEach")
+class HungarianAlgorithm {
+
+    private int[][] matrix; // initial matrix (cost matrix)
 
     // markers in the matrix
-    int[] squareInRow, squareInCol, rowIsCovered, colIsCovered, staredZeroesInRow;
+    private int[] squareInRow, squareInCol, rowIsCovered, colIsCovered, staredZeroesInRow;
 
     public HungarianAlgorithm(int[][] matrix) {
         if (matrix.length != matrix[0].length) {
