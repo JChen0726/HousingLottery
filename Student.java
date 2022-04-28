@@ -13,7 +13,7 @@ public class Student {
         // for new student
         public void setStrings(String email){
             this.email = email;}
-        public void setInts(ArrayList<Integer> scoreList){
+        public void setScores(ArrayList<Integer> scoreList){
             this.scores = scoreList.toArray();
         }
         public void setInternational(boolean international){ this.isInternational=international;}

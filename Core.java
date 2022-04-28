@@ -11,7 +11,10 @@ public class Core {
     }
 
     private void run() {
-
+        //runs the core of the program
+        //takes in the master list of students and dorms
+        //and runs the algorithm to assign students to dorms
+        //and then prints out the results
     }
 
 }
