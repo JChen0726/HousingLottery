@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -21,8 +22,6 @@ public class dataInput {
     public ArrayList<Dorm> getDormMasterList() {return DormMasterList;}
 
 
-
-
     dataInput() {
         //code creates test data, NOT FOR PRODUCTION
         for (int i = 1; i < 21; i++) {roomsPublicTest.add(Integer.toString(i));}
@@ -35,7 +34,11 @@ public class dataInput {
             //s.setSleepinghabit(rand.nextInt(1,5), rand.nextInt(1,5));
             s.setStrings(make_strings_for_testing() + "@taboracademy.org");
             s.setRoomChoices(String.valueOf(rand.nextInt(1, 21)), String.valueOf(rand.nextInt(1, 21)), String.valueOf(rand.nextInt(1, 21)), String.valueOf(rand.nextInt(1, 21)));
-            s.setInts(rand.nextInt(5), rand.nextInt(5), rand.nextInt(5), rand.nextInt(5), rand.nextInt(5), rand.nextInt(5));
+            ArrayList<Integer> j = new ArrayList<>();
+            for(int i = 0; i < 6; i++) {
+                j.add(rand.nextInt(1,5));
+            }
+            s.setScores(j);
             s.setInternational(Math.random() < 0.5);
             master.add(s);
         }
@@ -45,10 +48,12 @@ public class dataInput {
     private ArrayList input_data_from_ollys_excel_program(ArrayList<ArrayList<Object>> olly_master_list) {
         for (ArrayList<Object> objects : olly_master_list) {
             Student curstu = new Student();
-            ArrayList<Object> temparray = objects;
-            curstu.setStrings((String) temparray.get(0));
-            ArrayList<Integer> tempints = (ArrayList<Integer>) temparray.get(1);
-            curstu.setInts(tempints.get(0), tempints.get(1), tempints.get(2), tempints.get(3), tempints.get(4), tempints.get(5));
+            curstu.setStrings((String) objects.get(0));
+            ArrayList<Integer> tempArr = new ArrayList<>();
+            for (int i : (ArrayList<Integer>) objects.get(1)) {
+                tempArr.add(i);
+            }
+            curstu.setScores(tempArr);
             StudentMasterList.add(curstu);
         }
 
@@ -73,7 +78,36 @@ public class dataInput {
         }
     }
 
-
+    public void fromCSV(String[] args){
+        ArrayList list = new ArrayList();
+        try{
+            Scanner s = new Scanner(new File("/Users/yangzijian/Desktop/JAVA/Final Project/out/production/Final Project/dataCSV.csv"));
+            s.useDelimiter(",,,");
+            for (int j = 0; j < 6; j++) {
+                ArrayList <Object> sublist = new ArrayList<>();
+                ArrayList <Object> subsublist = new ArrayList<>();
+                String[] x = s.next().split(",");
+                for (String i : x) {
+                    if (!i.isEmpty()&&Character.isDigit(i.charAt(0))){
+                        subsublist.add(i);
+                        continue;
+                    }
+                    sublist.add(i);
+                }
+                sublist.add(subsublist);
+                if (j > 0){
+                    sublist.remove(0);
+                }
+                list.add(sublist);
+            }
+            System.out.println(list);
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     /*public void readtxt(){ //for reading in dorm/rooms
         try{
