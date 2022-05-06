@@ -5,7 +5,7 @@ public class Dorm {
     String name;
     int gender;
     int totalRooms;
-    private ArrayList<Room> Rooms = new ArrayList<>();
+    private final ArrayList<Room> Rooms = new ArrayList<>();
 
     public Dorm(String name, int totalRooms, int gender){
         this.name = name;
@@ -33,6 +33,10 @@ public class Dorm {
         }
         return null;
     }
+
+    public ArrayList<Room> getRoomsList(){
+        return Rooms;
+    }
 }
 
 class Room {
@@ -41,6 +45,7 @@ class Room {
     private boolean isSingle;
     private boolean isFull;
     private Student[] Students;
+    public boolean isAvailable = true;
 
     Room(String name, int numPeople){
         this.name = name;
@@ -59,18 +64,8 @@ class Room {
     public boolean isSingle(){return isSingle;}
 
     // change that later.
-    public void assignStudent(Student student){
-        if (!isFull&& Students[0]==null) {
-            Students[0] = student;
-            if (isSingle) {
-                isFull = true;
-            }
-        } else if (!isFull && Students[1]==null) {
-            Students[1] = student;
-        } else {
-            isFull = true;
-            System.out.println("Room is full"); // to GUI?
-        }
+    public void assignStudent(){
+        isFull = true;
     }
 
     public void removeStudent(Student student){
@@ -82,5 +77,6 @@ class Room {
             System.out.println("Student not found"); // to GUI?
         }
     }
+
 
 }

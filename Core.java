@@ -17,4 +17,11 @@ public class Core {
         //and then prints out the results
     }
 
+
+    private void newStudentPairing(){
+        ArrayList<StudentPair> newStudentSP = new ArrayList<>();
+        NewStudentPairingAlgo np = new NewStudentPairingAlgo(STUDENTS);
+
+    }
+
 }

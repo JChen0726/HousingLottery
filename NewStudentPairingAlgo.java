@@ -11,7 +11,7 @@ public class NewStudentPairingAlgo {
        
         this.studentStatsMap = students;
         this.studentStatsMap = internationalPrioritized();
-        findPairs();
+
     }
 
     private ArrayList<Student> internationalPrioritized(){
@@ -44,30 +44,59 @@ public class NewStudentPairingAlgo {
         return totalDifference;
     }
 
-    private ArrayList<StudentPair> findPairs(){
-
-        for(int i = 0; i < studentStatsMap.size(); i++){
+    private ArrayList<StudentPair> findPairs(ArrayList<Student> studentList){
+        studentList = prioritize(studentList);
+        for(int i = 0; i < studentList.size(); i++){
             int mindiff = Integer.MAX_VALUE;
             StudentPair temp = null;
             int minMatch=-1;
-            if(studentStatsMap.get(i).getPairedStatus()){
+            if(studentList.get(i).getPairedStatus()){
                 continue;
             }
 
-            for(int j = i+1 ;j < studentStatsMap.size(); j++){
-                if(!studentStatsMap.get(j).getPairedStatus()){
+            for(int j = i+1 ;j < studentList.size(); j++){
+                if(!studentList.get(j).getPairedStatus()){
                     if(mindiff > totaldiff(i, j)){
                         mindiff = totaldiff(i, j);
-                        temp = new StudentPair(studentStatsMap.get(i), studentStatsMap.get(j));
+                        temp = new StudentPair(studentList.get(i), studentList.get(j));
                         minMatch = j;
                     }
                 }
             }
 
-            studentStatsMap.get(i).setPaired();
-            studentStatsMap.get(minMatch).setPaired();
+            studentList.get(i).setPaired();
+            studentList.get(minMatch).setPaired();
             paired.add(temp);
         }
         return paired;
     }
+
+    private ArrayList<Direction> randomAssignToRooms(ArrayList<Student> newStudent, ArrayList<Dorm>dorms){
+        // assign the paired new students to random dorms
+        ArrayList <StudentPair> sp = findPairs(newStudent);
+        ArrayList<Direction> newStudentAssignment = new ArrayList<Direction>();
+        for (int i = 0; i <dorms.size(); i++) {
+            Dorm dorm = dorms.get(i);
+            int count = 0;
+            ArrayList<Room> roomList = dorm.getRoomsList();
+            for(Room room: roomList){
+                if(!room.isFull()&&room.isAvailable&& !room.isSingle()) {
+                    room.assignStudent();
+                    newStudentAssignment.add(new Direction(sp.get(0),room));
+                    sp.remove(0);
+                }
+            }
+        }
+        if(sp.isEmpty()){
+            System.out.println("Success");
+            return newStudentAssignment;
+        }else{
+            System.out.println("Not Enough Room/ error happened");
+        }
+        return null;
+    }
+
+
+
+
 }

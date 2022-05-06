@@ -20,10 +20,10 @@ public class dataInput {
     //basic get methods
     public ArrayList<Student> getStudentMasterList() {return StudentMasterList;}
     public ArrayList<Dorm> getDormMasterList() {return DormMasterList;}
-
-
+    
     dataInput() {
         //code creates test data, NOT FOR PRODUCTION
+        /*
         for (int i = 1; i < 21; i++) {roomsPublicTest.add(Integer.toString(i));}
         master = new ArrayList<>();
         Random rand = new Random();
@@ -41,8 +41,9 @@ public class dataInput {
             s.setScores(j);
             s.setInternational(Math.random() < 0.5);
             master.add(s);
-        }
-
+            
+        }*/
+        new Core(StudentMasterList, DormMasterList);
     }
 
     private ArrayList input_data_from_ollys_excel_program(ArrayList<ArrayList<Object>> olly_master_list) {
@@ -60,8 +61,8 @@ public class dataInput {
         return StudentMasterList;
     }
 
-
-    public void txtmake() { //for testing dorms
+    
+    private void txtmake() { //for testing dorms
         Random rand = new Random();
         try {
             FileWriter writer = new FileWriter("matsu.txt");
@@ -78,25 +79,26 @@ public class dataInput {
         }
     }
 
-    public void fromCSV(String[] args){
+    private void DormInput(String[] args){
         ArrayList list = new ArrayList();
         try{
-            Scanner s = new Scanner(new File("/Users/yangzijian/Desktop/JAVA/Final Project/out/production/Final Project/dataCSV.csv"));
+            Scanner s = new Scanner(new File("/Users/yangzijian/Desktop/JAVA/Final Project/out/production/Final Project/RoomList - Sheet1.csv"));
             s.useDelimiter(",,,");
-            for (int j = 0; j < 6; j++) {
+            for (int m = 0; m < 16; m++) {
                 ArrayList <Object> sublist = new ArrayList<>();
                 ArrayList <Object> subsublist = new ArrayList<>();
                 String[] x = s.next().split(",");
-                for (String i : x) {
-                    if (!i.isEmpty()&&Character.isDigit(i.charAt(0))){
-                        subsublist.add(i);
-                        continue;
-                    }
-                    sublist.add(i);
+                for (String p: x) {
+                    subsublist.add(p.strip());
                 }
-                sublist.add(subsublist);
-                if (j > 0){
-                    sublist.remove(0);
+                int k = 0;
+                while(k < subsublist.size()-1){
+                    ArrayList tem = new ArrayList();
+                    for (int i = 0; i < 3; i++) {
+                        tem.add(subsublist.get(k + i));
+                    }
+                    sublist.add(tem);
+                    k += 3;
                 }
                 list.add(sublist);
             }
@@ -127,7 +129,7 @@ public class dataInput {
     }
     */
 
-
+    /*
     private static String make_strings_for_testing() {
         String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
         StringBuilder sb = new StringBuilder();
@@ -140,6 +142,6 @@ public class dataInput {
         }
         String randomString = sb.toString();
         return randomString;
-    }
+    }*/
 }
 

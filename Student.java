@@ -18,7 +18,7 @@ public class Student {
         }
         public void setInternational(boolean international){ this.isInternational=international;}
         public void setPaired(){this.isChosen = true;}
-        public void setGender(int a){this.gender = a;}
+        public void setGender(int a){this.gender = a;} // add to the algo;
         public boolean getPairedStatus(){return isChosen;}
         public boolean getInternationalStatus(){return isInternational;}
 
@@ -26,9 +26,6 @@ public class Student {
             return grade;}
         public String getEmail() {return email;}
         public Object[] getScores() {return scores;}
-
-        public boolean getInternational(){return isInternational;}
-
         //
         public void setRoomChoices(String a, String b, String c, String d){ //change to room.getname
             this.roomChoices.add(a);
@@ -42,4 +39,6 @@ public class Student {
         public int getGender(){
             return gender;
         }
+        
+
 }
