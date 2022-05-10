@@ -71,18 +71,18 @@ public class NewStudentPairingAlgo {
         return paired;
     }
 
-    private ArrayList<Direction> randomAssignToRooms(ArrayList<Student> newStudent, ArrayList<Dorm>dorms){
+    private ArrayList<RoomSelection> randomAssignToRooms(ArrayList<Student> newStudent, ArrayList<Dorm>dorms){
         // assign the paired new students to random dorms
         ArrayList <StudentPair> sp = findPairs(newStudent);
-        ArrayList<Direction> newStudentAssignment = new ArrayList<Direction>();
-        for (int i = 0; i <dorms.size(); i++) {
+        ArrayList<RoomSelection> newStudentAssignment = new ArrayList<RoomSelection>();
+        for (int i = 0; i <dorms.size(); i++) { //NEED TO FIX THIS
             Dorm dorm = dorms.get(i);
             int count = 0;
-            ArrayList<Room> roomList = dorm.getRoomsList();
+            ArrayList<Room> roomList = dorm.getAllRooms(); //NEED TO FIX THIS
             for(Room room: roomList){
                 if(!room.isFull()&&room.isAvailable&& !room.isSingle()) {
                     room.assignStudent();
-                    newStudentAssignment.add(new Direction(sp.get(0),room));
+                    newStudentAssignment.add(new RoomSelection(sp.get(0),room));
                     sp.remove(0);
                 }
             }

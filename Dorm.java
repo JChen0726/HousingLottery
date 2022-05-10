@@ -1,19 +1,16 @@
 import java.util.ArrayList;
 
 public class Dorm {
-
-    String name;
-    int gender;
+    private String name;
+    private String gender;
     int totalRooms;
     private final ArrayList<Room> Rooms = new ArrayList<>();
 
-    public Dorm(String name, int totalRooms, int gender){
+    public Dorm(String name, int totalRooms, String gender){
         this.name = name;
         this.totalRooms = totalRooms;
         this.gender = gender;
     }
-
-    public int getTotalRooms(){return totalRooms;}
 
     public String toString (){
         return name;
@@ -22,9 +19,9 @@ public class Dorm {
     public void setRooms(ArrayList<ArrayList<String>> rooms){
         for (int i = 0;i<totalRooms;i++) {
             Room tempRoom = new Room(rooms.get(i).get(0),Integer.parseInt(rooms.get(i).get(1)));
+            Rooms.add(tempRoom);
         }
     }
-
     public Room getRoom(String roomname){
         for (Room room : Rooms) {
             if (room.toString().equals(roomname)) {
@@ -34,7 +31,7 @@ public class Dorm {
         return null;
     }
 
-    public ArrayList<Room> getRoomsList(){
+    public ArrayList<Room> getAllRooms(){
         return Rooms;
     }
 }
