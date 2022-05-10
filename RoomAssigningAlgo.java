@@ -67,29 +67,28 @@ public class RoomAssigningAlgo{
         return  hungarianAlgorithm.findOptimalAssignment();
     }
 
-    private ArrayList<Direction> assignRooms(){
+    private ArrayList<RoomSelection> assignRooms(){
 
-        ArrayList<Direction> directlist= new ArrayList<>();
+        ArrayList<RoomSelection> directlist= new ArrayList<>();
         int [][] pairinglist = runCalculation();
-        //lambda done by bryn
-        Arrays.stream(pairinglist).forEach(i -> directlist.add(new Direction(students.get(i[0]), dormRooms.get(i[1]))));
+        Arrays.stream(pairinglist).forEach(i -> directlist.add(new RoomSelection(students.get(i[0]), dormRooms.get(i[1]))));
         return directlist;
     }
 }
 
-class Direction {
+class RoomSelection {
 
     StudentPair studentPair;
     Student studentname;
     
     Room Rn;
 
-    Direction(StudentPair studentName, Room room) {
+    RoomSelection(StudentPair studentName, Room room) {
         this.studentPair = studentName;
         this.Rn = room;
     }
     
-    Direction(Student stu, Room room){
+    RoomSelection(Student stu, Room room){
         this.studentname = stu; 
         this. Rn = room;
     }

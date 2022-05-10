@@ -1,10 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.Scanner;
 
 public class dataInput {
@@ -43,7 +40,6 @@ public class dataInput {
             master.add(s);
             
         }*/
-        new Core(StudentMasterList, DormMasterList);
     }
 
     private ArrayList input_data_from_ollys_excel_program(ArrayList<ArrayList<Object>> olly_master_list) {
@@ -61,7 +57,7 @@ public class dataInput {
         return StudentMasterList;
     }
 
-    
+    /*
     private void txtmake() { //for testing dorms
         Random rand = new Random();
         try {
@@ -78,14 +74,14 @@ public class dataInput {
             e.printStackTrace();
         }
     }
-
-    private void DormInput(String[] args){
-        ArrayList list = new ArrayList();
+*/
+    private ArrayList<Dorm> DormInput(String[] args){
+        ArrayList<Dorm> list = new ArrayList();
         try{
             Scanner s = new Scanner(new File("/Users/yangzijian/Desktop/JAVA/Final Project/out/production/Final Project/RoomList - Sheet1.csv"));
             s.useDelimiter(",,,");
             for (int m = 0; m < 16; m++) {
-                ArrayList <Object> sublist = new ArrayList<>();
+                ArrayList <ArrayList> sublist = new ArrayList<>();
                 ArrayList <Object> subsublist = new ArrayList<>();
                 String[] x = s.next().split(",");
                 for (String p: x) {
@@ -100,15 +96,20 @@ public class dataInput {
                     sublist.add(tem);
                     k += 3;
                 }
-                list.add(sublist);
+                for (int i = 0; i < sublist.size(); i++) {
+                    Dorm d = new Dorm(sublist.get(i).get(0).toString(),sublist.size(),sublist.get(i).get(2).toString());
+                    d.setRooms(sublist.get(i));
+                    list.add(d);
+                }
             }
-            System.out.println(list);
+            return list;
         }
         catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return list;
     }
 
     /*public void readtxt(){ //for reading in dorm/rooms

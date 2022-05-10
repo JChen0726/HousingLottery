@@ -1,9 +1,10 @@
 public class Main {
 //dfsfdf
     Main(){
-        dataInput dataInput = new dataInput();
+        dataInput di = new dataInput();
+        Core v = new Core(di.getStudentMasterList(), di.getDormMasterList());
         //NewStudentPairingAlgo pairingAlgo = new NewStudentPairingAlgo(dataInput.master);
-        RoomAssigningAlgo oldAlgo = new RoomAssigningAlgo(dataInput.master,dataInput.roomsPublicTest);
+
     }
     
     public static void main(String[] args) {
