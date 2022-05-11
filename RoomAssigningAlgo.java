@@ -5,12 +5,13 @@ import java.util.Set;
 
 
 public class RoomAssigningAlgo{
-    private int[][] costMatrix;
-    private ArrayList<Student> students; // for singlerooms
+    private final int[][] costMatrix;
+    private final ArrayList<Student> students; // for singlerooms
     private ArrayList<StudentPair> studentPairs; // for double rooms
     // students variables arraylist <choices>
     private ArrayList<Room> dormRooms;
-    private int [] choicesWeight,gradeWeight;
+    private final int [] choicesWeight;
+    private final int [] gradeWeight;
 
     RoomAssigningAlgo(ArrayList<Student> singleStudent, ArrayList<Room> rooms){
         // for single students
@@ -19,7 +20,6 @@ public class RoomAssigningAlgo{
 
         this.costMatrix = new int[singleStudent.size()][rooms.size()];
         this.students = singleStudent;
-        this.dormRooms = dormRooms;
         // need to initialize the two arraylist here
 
         roomChoiceCostInput();//costs into array
@@ -68,7 +68,6 @@ public class RoomAssigningAlgo{
     }
 
     private ArrayList<RoomSelection> assignRooms(){
-
         ArrayList<RoomSelection> directlist= new ArrayList<>();
         int [][] pairinglist = runCalculation();
         Arrays.stream(pairinglist).forEach(i -> directlist.add(new RoomSelection(students.get(i[0]), dormRooms.get(i[1]))));
@@ -102,17 +101,21 @@ class RoomSelection {
 @SuppressWarnings("ForLoopReplaceableByForEach")
 class HungarianAlgorithm {
 
-    private int[][] matrix; // initial matrix (cost matrix)
+    private final int[][] matrix; // initial matrix (cost matrix)
 
     // markers in the matrix
-    private int[] squareInRow, squareInCol, rowIsCovered, colIsCovered, staredZeroesInRow;
+    private final int[] squareInRow;
+    private final int[] squareInCol;
+    private final int[] rowIsCovered;
+    private final int[] colIsCovered;
+    private final int[] staredZeroesInRow;
 
     public HungarianAlgorithm(int[][] matrix) {
         if (matrix.length != matrix[0].length) {
             try {
                 throw new IllegalAccessException("The matrix is not square!");
-            } catch (IllegalAccessException ex) {
-                System.err.println(ex);
+            } catch (IllegalAccessException e) {
+                System.err.println(e);
                 System.exit(1);
             }
         }
@@ -319,7 +322,7 @@ class HungarianAlgorithm {
         //(a)
         // add Z_0 to K
         K.add(mainZero);
-        boolean found = false;
+        boolean found;
         do {
             // (b)
             // add Z_1 to K if
@@ -343,7 +346,6 @@ class HungarianAlgorithm {
             // add the new Z_0 to K
             if (j != -1) {
                 K.add(new int[]{i, j});
-                found = true;
             } else {
                 found = false;
             }

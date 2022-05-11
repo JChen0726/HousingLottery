@@ -18,8 +18,10 @@ public class Core {
     }
 
     private void ReturningStudentPairing(){
-        for(Dorm s : DORMS){
-            RoomAssigningAlgo oldAlgo = new RoomAssigningAlgo(STUDENTS,s.getAllRooms());
+        for(Dorm dorm : DORMS){
+            RoomAssigningAlgo oldAlgo = new RoomAssigningAlgo(STUDENTS,dorm.getAllRooms());
         }
     }
+
+
 }

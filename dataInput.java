@@ -89,7 +89,7 @@ public class dataInput {
                 }
                 int k = 0;
                 while(k < subsublist.size()-1){
-                    ArrayList tem = new ArrayList();
+                    ArrayList <Object>tem = new ArrayList<>();
                     for (int i = 0; i < 3; i++) {
                         tem.add(subsublist.get(k + i));
                     }
@@ -105,8 +105,6 @@ public class dataInput {
             return list;
         }
         catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
             e.printStackTrace();
         }
         return list;
