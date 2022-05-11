@@ -78,7 +78,7 @@ public class dataInput {
     private ArrayList<Dorm> DormInput(String[] args){
         ArrayList<Dorm> list = new ArrayList();
         try{
-            Scanner s = new Scanner(new File("/Users/yangzijian/Desktop/JAVA/Final Project/out/production/Final Project/RoomList - Sheet1.csv"));
+            Scanner s = new Scanner(new File("/Users/justinchen/Documents/GitHub/HousingLottery/Sheet1.csv"));
             s.useDelimiter(",,,");
             for (int m = 0; m < 16; m++) {
                 ArrayList <ArrayList> sublist = new ArrayList<>();
