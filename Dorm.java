@@ -1,10 +1,10 @@
 import java.util.ArrayList;
 
 public class Dorm {
-    private String name;
-    private String gender;
+    private final String name;
+    private final String gender;
     int totalRooms;
-    private final ArrayList<Room> Rooms = new ArrayList<>();
+    private ArrayList<Room> Rooms = new ArrayList<>();
 
     public Dorm(String name, int totalRooms, String gender) {
         this.name = name;
@@ -16,14 +16,10 @@ public class Dorm {
         return name;
     }
 
-    public void setRooms(ArrayList<ArrayList> rooms) {
+    public void setRooms(ArrayList<ArrayList> roomlists) {
         for (int i = 0; i < totalRooms; i++) {
             //lambda that returns 2 if a string is "Double" and 1 if its "Single"
-            String v = rooms.get(i).get(0).toString();
-            if (v.equals("Double")) {
-
-            }
-            Room tempRoom = new Room(rooms.get(i).get(0).toString(), doubleOrSingle(rooms.get(i).get(0).toString()));
+            Room tempRoom = new Room(roomlists.get(i).get(0).toString(), doubleOrSingle(roomlists.get(i).get(0).toString()));
             Rooms.add(tempRoom);
         }
     }
@@ -45,7 +41,7 @@ public class Dorm {
         int v = 0;
         if (q.equals("Double")) {
             v = 2;
-        } else {
+        }else{
             v = 1;
         }
         return v;
@@ -56,41 +52,52 @@ public class Dorm {
 class Room {
 
     private final String name;
-    private boolean isSingle;
-    private boolean isFull;
-    private Student[] Students;
-    public boolean isAvailable = true;
+    private final boolean isSingle;
+    private boolean isFull = false;
+    private ArrayList<Object> Students = new ArrayList<>();
+    public boolean isAvailable = true; // for administrator to choose if room is available for use or not
 
     Room(String name, int numPeople){
         this.name = name;
         if (numPeople == 1){
             isSingle = true;
-            Students = new Student[1];
         }else{
             isSingle = false;
-            Students = new Student[2];
         }
     }
     public String toString(){return name;}
 
-    public boolean isFull(){return isFull;}
+    public boolean isOccupied(){return isFull;}
 
     public boolean isSingle(){return isSingle;}
 
     // change that later.
-    public void assignStudent(){
+    public void assignStudents(Student v){
         isFull = true;
+        Students.add(v);
     }
 
-    public void removeStudent(Student student){
-        if (Students[0]==student) {
-            Students[0] = null;
-        } else if(Students[1]==student) {
-            Students[1] = null;
-        } else {
+    public void assignStudents(StudentPair sp){
+        isFull = true;
+
+    }
+
+    public ArrayList<Object> getStudents(){
+        return Students;
+    }
+
+    public void removeStudents(Student student){
+        if (Students.contains(student)) {
+            Students.remove(student);
+        }else {
             System.out.println("Student not found"); // to GUI?
         }
     }
 
+    public void removeStudents(StudentPair s1){
+        if (Students.contains(s1)){
+            Students.remove(s1);
+        }
+    }
 
 }

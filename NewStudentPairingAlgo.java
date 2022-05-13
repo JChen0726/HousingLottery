@@ -76,8 +76,11 @@ public class NewStudentPairingAlgo { //Justin wrote
             int count = 0;
             ArrayList<Room> roomList = dorm.getAllRooms(); //NEED TO FIX THIS
             for(Room room: roomList){
-                if(!room.isFull()&&room.isAvailable&& !room.isSingle()) {
-                    room.assignStudent();
+                System.out.println("hi");
+                if(!room.isOccupied()){
+                    System.out.println("hi");
+                //&&room.isAvailable&& !room.isSingle()) {
+                    room.assignStudents();
                     newStudentAssignment.add(new RoomSelection(sp.get(0),room));
                     sp.remove(0);
                 }
@@ -86,8 +89,6 @@ public class NewStudentPairingAlgo { //Justin wrote
         if(sp.isEmpty()){
             System.out.println("Success");
             return newStudentAssignment;
-        }else{
-            System.out.println("Not Enough Room/ error happened");
         }
         return null;
     }

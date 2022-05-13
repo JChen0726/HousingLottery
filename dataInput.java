@@ -23,7 +23,7 @@ public class dataInput {
     private ArrayList inputStudentData() {
         ArrayList<ArrayList<Object>> rawStudentData = new ArrayList<>();
         try {
-            Scanner studentInput = new Scanner(new File("/Users/brynkerslake/Documents/GitHub/HousingLottery/StudentTestData.csv"));
+            Scanner studentInput = new Scanner(new File("/Users/justinchen/Documents/GitHub/HousingLottery/StudentTestData.csv"));
             studentInput.useDelimiter(",,,");
             for (int i = 0; i < 38; i++) { // 40 being the number of students
                 try {
@@ -58,9 +58,9 @@ public class dataInput {
 
         ArrayList<Dorm> list = new ArrayList();
         try{
-            Scanner s = new Scanner(new File("/Users/brynkerslake/Documents/GitHub/HousingLottery/RoomTestData.csv"));
+            Scanner s = new Scanner(new File("/Users/justinchen/Documents/GitHub/HousingLottery/RoomTestData.csv"));
             s.useDelimiter(",,,");
-            for (int m = 0; m < 16; m++) { // 16 being the number of dorms
+            for (int m = 0; m < 2; m++) { // 16 being the number of dorms
                 ArrayList <ArrayList> sublist = new ArrayList<>();
                 ArrayList <Object> subsublist = new ArrayList<>();
                 String[] x = s.next().split(",");

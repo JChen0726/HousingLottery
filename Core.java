@@ -16,11 +16,14 @@ public class Core {
 
     private void newStudentPairing(){
         NewStudentPairingAlgo np = new NewStudentPairingAlgo(STUDENTS);
+        this.newStudentRoomPair = np.randomAssignToRooms(DORMS);
+        System.out.println(newStudentRoomPair);
     }
 
-    private void ReturningStudentPairing(){
-        for(Dorm dorm : DORMS){
-            RoomAssigningAlgo oldAlgo = new RoomAssigningAlgo(STUDENTS,dorm.getAllRooms());
+    private void ReturningStudentPairing() {
+
+        for (Dorm dorm : DORMS) {
+            RoomAssigningAlgo oldAlgo = new RoomAssigningAlgo(STUDENTS, dorm.getAllRooms());
         }
 
     }
