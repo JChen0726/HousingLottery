@@ -55,6 +55,7 @@ public class dataInput {
     }
 
     private ArrayList<Dorm> dormInput(){
+
         ArrayList<Dorm> list = new ArrayList();
         try{
             Scanner s = new Scanner(new File("/Users/brynkerslake/Documents/GitHub/HousingLottery/RoomTestData.csv"));

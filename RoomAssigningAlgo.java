@@ -82,8 +82,8 @@ class RoomSelection {
     
     Room Rn;
 
-    RoomSelection(StudentPair studentName, Room room) {
-        this.studentPair = studentName;
+    RoomSelection(StudentPair studentPair, Room room) {
+        this.studentPair = studentPair;
         this.Rn = room;
     }
     
