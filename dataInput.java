@@ -2,85 +2,64 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class dataInput {
     //for production purposes:
-    private ArrayList<Student> StudentMasterList;
-    private ArrayList<Dorm> DormMasterList;
-
-    //for testing purposes:
-    public ArrayList<String> roomsPublicTest = new ArrayList<>();
-    public ArrayList<Student> master; //change to private later
-
+    private ArrayList<Student> StudentMasterList = new ArrayList<Student>();
+    private ArrayList<Dorm> DormMasterList = new ArrayList<Dorm>();
 
     //basic get methods
     public ArrayList<Student> getStudentMasterList() {return StudentMasterList;}
     public ArrayList<Dorm> getDormMasterList() {return DormMasterList;}
     
     dataInput() {
-        //code creates test data, NOT FOR PRODUCTION
-        /*
-        for (int i = 1; i < 21; i++) {roomsPublicTest.add(Integer.toString(i));}
-        master = new ArrayList<>();
-        Random rand = new Random();
-        for (int q = 0; q < 20; q++) {
-            Student s = new Student();
-            //s.setEmail(stringmaker() + "@taboracademy.org");
-            //s.setRoomPreference(rand.nextInt(1,5), rand.nextInt(1,5), rand.nextInt(1,5));
-            //s.setSleepinghabit(rand.nextInt(1,5), rand.nextInt(1,5));
-            s.setStrings(make_strings_for_testing() + "@taboracademy.org");
-            s.setRoomChoices(String.valueOf(rand.nextInt(1, 21)), String.valueOf(rand.nextInt(1, 21)), String.valueOf(rand.nextInt(1, 21)), String.valueOf(rand.nextInt(1, 21)));
-            ArrayList<Integer> j = new ArrayList<>();
-            for(int i = 0; i < 6; i++) {
-                j.add(rand.nextInt(1,5));
-            }
-            s.setScores(j);
-            s.setInternational(Math.random() < 0.5);
-            master.add(s);
-            
-        }*/
+        inputStudentData();
+        dormInput();
     }
 
-    private ArrayList input_data_from_ollys_excel_program(ArrayList<ArrayList<Object>> olly_master_list) {
-        for (ArrayList<Object> objects : olly_master_list) {
+    private ArrayList inputStudentData() {
+        ArrayList<ArrayList<Object>> rawStudentData = new ArrayList<>();
+        try {
+            Scanner studentInput = new Scanner(new File("/Users/brynkerslake/Documents/GitHub/HousingLottery/StudentTestData.csv"));
+            studentInput.useDelimiter(",,,");
+            for (int i = 0; i < 38; i++) { // 40 being the number of students
+                try {
+                    //lambda that splits the next inout into an arraylist
+                    ArrayList<Object> x = Arrays.stream(studentInput.next().split(",")).map(String::strip).collect(Collectors.toCollection(ArrayList::new));
+                    rawStudentData.add(x);
+                }
+                catch (Exception e) {
+                    }
+                } //takes data from csv, puts into rawstudentdata
+
+        //assumes data format is: [[name, new/old, domestic/international, gender, [choices]], [name, etc], ...]
+        for (ArrayList<Object> objects : rawStudentData) {
+            System.out.println(objects);
             Student curstu = new Student();
-            curstu.setStrings((String) objects.get(0));
-            ArrayList<Integer> tempArr = new ArrayList<>();
-            for (int i : (ArrayList<Integer>) objects.get(1)) {
-                tempArr.add(i);
-            }
-            curstu.setScores(tempArr);
+            curstu.setEmail(String.valueOf(objects.get(0)));
+            curstu.setGrade(Integer.parseInt(objects.get(1).toString()));
+            curstu.setInternational(objects.get(2).toString().equals("International"));
+            curstu.setGender(String.valueOf(objects.get(3)));
+            ArrayList<Integer> choices = objects.stream().filter(x -> x instanceof Integer).map(x -> (Integer) x).collect(Collectors.toCollection(ArrayList::new));
+            curstu.setScores(choices);
             StudentMasterList.add(curstu);
         }
 
+    } catch (FileNotFoundException e) {
+        e.printStackTrace();
+    }
         return StudentMasterList;
     }
 
-    /*
-    private void txtmake() { //for testing dorms
-        Random rand = new Random();
-        try {
-            FileWriter writer = new FileWriter("matsu.txt");
-            writer.write("Matsumura\n");
-            writer.write("20\n");
-            writer.write("Male\n");
-            for (int i = 1; i <= 20; i++) {
-                writer.write(String.valueOf(i) + " " + (rand.nextInt(2) + 1) + "\n");
-            }
-            writer.write(",");
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-*/
-    private ArrayList<Dorm> DormInput(String[] args){
+    private ArrayList<Dorm> dormInput(){
         ArrayList<Dorm> list = new ArrayList();
         try{
-            Scanner s = new Scanner(new File("/Users/justinchen/Documents/GitHub/HousingLottery/Sheet1.csv"));
+            Scanner s = new Scanner(new File("/Users/brynkerslake/Documents/GitHub/HousingLottery/RoomTestData.csv"));
             s.useDelimiter(",,,");
-            for (int m = 0; m < 16; m++) {
+            for (int m = 0; m < 16; m++) { // 16 being the number of dorms
                 ArrayList <ArrayList> sublist = new ArrayList<>();
                 ArrayList <Object> subsublist = new ArrayList<>();
                 String[] x = s.next().split(",");
@@ -88,7 +67,7 @@ public class dataInput {
                     subsublist.add(p.strip());
                 }
                 int k = 0;
-                while(k < subsublist.size()-1){
+                while (k < subsublist.size()-1) {
                     ArrayList <Object>tem = new ArrayList<>();
                     for (int i = 0; i < 3; i++) {
                         tem.add(subsublist.get(k + i));
@@ -98,7 +77,8 @@ public class dataInput {
                 }
                 for (int i = 0; i < sublist.size(); i++) {
                     Dorm d = new Dorm(sublist.get(i).get(0).toString(),sublist.size(),sublist.get(i).get(2).toString());
-                    d.setRooms(sublist.get(i));
+                    System.out.println(sublist.get(i));
+                    d.setRooms(sublist);
                     list.add(d);
                 }
             }
@@ -110,37 +90,5 @@ public class dataInput {
         return list;
     }
 
-    /*public void readtxt(){ //for reading in dorm/rooms
-        try{
-            Scanner t = new Scanner(new File("/Users/brynkerslake/Desktop/JAVA/Final Project/matsu.txt"));
-            ArrayList<ArrayList> outer = new ArrayList();
-            ArrayList<String> inner = new ArrayList();
-            while(t.hasNextLine()&&t.next()!=","){
-                inner.add(t.nextLine());
-                outer.add(inner);
-                inner.clear();
-            }
-            System.out.println(outer);
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    */
-
-    /*
-    private static String make_strings_for_testing() {
-        String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-        StringBuilder sb = new StringBuilder();
-        Random random = new Random();
-        int length = 8;
-        for(int i = 0; i < length; i++) {
-            int index = random.nextInt(alphabet.length());
-            char randomChar = alphabet.charAt(index);
-            sb.append(randomChar);
-        }
-        String randomString = sb.toString();
-        return randomString;
-    }*/
 }
 

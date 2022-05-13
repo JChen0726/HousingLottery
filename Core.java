@@ -14,14 +14,12 @@ public class Core {
     private void newStudentPairing(){
         ArrayList<StudentPair> newStudentSP = new ArrayList<>();
         NewStudentPairingAlgo np = new NewStudentPairingAlgo(STUDENTS);
-
     }
 
     private void ReturningStudentPairing(){
         for(Dorm dorm : DORMS){
             RoomAssigningAlgo oldAlgo = new RoomAssigningAlgo(STUDENTS,dorm.getAllRooms());
         }
+
     }
-
-
 }
