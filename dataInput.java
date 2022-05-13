@@ -75,7 +75,7 @@ public class dataInput {
         }
     }
 */
-    private ArrayList<Dorm> DormInput(String[] args){
+    private ArrayList<Dorm> DormInput(String[] hi){
         ArrayList<Dorm> list = new ArrayList();
         try{
             Scanner s = new Scanner(new File("/Users/justinchen/Documents/GitHub/HousingLottery/Sheet1.csv"));

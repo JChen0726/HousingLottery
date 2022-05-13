@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.lang.Math;
 
-public class NewStudentPairingAlgo {
+public class NewStudentPairingAlgo { //Justin wrote
 
     ArrayList<Student> studentStatsMap;
 
@@ -10,8 +10,6 @@ public class NewStudentPairingAlgo {
     NewStudentPairingAlgo(ArrayList<Student> students){
        
         this.studentStatsMap = students;
-        this.studentStatsMap = internationalPrioritized();
-
     }
 
     private ArrayList<Student> internationalPrioritized(){
@@ -44,7 +42,7 @@ public class NewStudentPairingAlgo {
         return totalDifference;
     }
 
-    private ArrayList<StudentPair> findPairs(ArrayList<Student> studentList){
+    private ArrayList<StudentPair> findPairs(ArrayList<Student> studentList){ //Justin wrote
         studentList = prioritize(studentList);
         for(int i = 0; i < studentList.size(); i++){
             int mindiff = Integer.MAX_VALUE;
@@ -53,7 +51,6 @@ public class NewStudentPairingAlgo {
             if(studentList.get(i).getPairedStatus()){
                 continue;
             }
-
             for(int j = i+1 ;j < studentList.size(); j++){
                 if(!studentList.get(j).getPairedStatus()){
                     if(mindiff > totaldiff(i, j)){
@@ -63,7 +60,6 @@ public class NewStudentPairingAlgo {
                     }
                 }
             }
-
             studentList.get(i).setPaired();
             studentList.get(minMatch).setPaired();
             paired.add(temp);
@@ -71,9 +67,9 @@ public class NewStudentPairingAlgo {
         return paired;
     }
 
-    private ArrayList<RoomSelection> randomAssignToRooms(ArrayList<Student> newStudent, ArrayList<Dorm>dorms){
+    public ArrayList<RoomSelection> randomAssignToRooms( ArrayList<Dorm>dorms){ // Justin wrote
         // assign the paired new students to random dorms
-        ArrayList <StudentPair> sp = findPairs(newStudent);
+        ArrayList <StudentPair> sp = findPairs(internationalPrioritized());
         ArrayList<RoomSelection> newStudentAssignment = new ArrayList<RoomSelection>();
         for (int i = 0; i <dorms.size(); i++) { //NEED TO FIX THIS
             Dorm dorm = dorms.get(i);
