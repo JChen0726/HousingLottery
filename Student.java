@@ -2,7 +2,8 @@ import java.util.ArrayList;
 
 public class Student {
 
-    private int grade, gender;
+    private int grade;
+    private String gender;
     private String email;
     private Object[] scores;//should make these so that they don't need to be assigned to variables
 
@@ -10,15 +11,18 @@ public class Student {
     private ArrayList <String> roomChoices = new ArrayList<>(); //change to rooms
 
     Student () {isChosen = false;}
+
         // for new student
-        public void setStrings(String email){
+
+        public void setEmail(String email){
             this.email = email;}
         public void setScores(ArrayList<Integer> scoreList){
             this.scores = scoreList.toArray();
         }
         public void setInternational(boolean international){ this.isInternational=international;}
         public void setPaired(){this.isChosen = true;}
-        public void setGender(int a){this.gender = a;} // add to the algo;
+        public void setGrade(int grade){this.grade = grade;}
+        public void setGender(String a){this.gender = a;} // add to the algo;
         public boolean getPairedStatus(){return isChosen;}
         public boolean getInternationalStatus(){return isInternational;}
 
@@ -36,9 +40,7 @@ public class Student {
         public ArrayList<String> getRoomChoices(){
             return roomChoices;
         }
-        public int getGender(){
+        public String getGender(){
             return gender;
         }
-        
-
 }

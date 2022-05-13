@@ -6,23 +6,29 @@ public class Dorm {
     int totalRooms;
     private final ArrayList<Room> Rooms = new ArrayList<>();
 
-    public Dorm(String name, int totalRooms, String gender){
+    public Dorm(String name, int totalRooms, String gender) {
         this.name = name;
         this.totalRooms = totalRooms;
         this.gender = gender;
     }
 
-    public String toString (){
+    public String toString() {
         return name;
     }
 
-    public void setRooms(ArrayList<ArrayList<String>> rooms){
-        for (int i = 0;i<totalRooms;i++) {
-            Room tempRoom = new Room(rooms.get(i).get(0),Integer.parseInt(rooms.get(i).get(1)));
+    public void setRooms(ArrayList<ArrayList> rooms) {
+        for (int i = 0; i < totalRooms; i++) {
+            //lambda that returns 2 if a string is "Double" and 1 if its "Single"
+            String v = rooms.get(i).get(0).toString();
+            if (v.equals("Double")) {
+
+            }
+            Room tempRoom = new Room(rooms.get(i).get(0).toString(), doubleOrSingle(rooms.get(i).get(0).toString()));
             Rooms.add(tempRoom);
         }
     }
-    public Room getRoom(String roomname){
+
+    public Room getRoom(String roomname) {
         for (Room room : Rooms) {
             if (room.toString().equals(roomname)) {
                 return room;
@@ -31,9 +37,20 @@ public class Dorm {
         return null;
     }
 
-    public ArrayList<Room> getAllRooms(){
+    public ArrayList<Room> getAllRooms() {
         return Rooms;
     }
+
+    private int doubleOrSingle(String q) {
+        int v = 0;
+        if (q.equals("Double")) {
+            v = 2;
+        } else {
+            v = 1;
+        }
+        return v;
+    }
+
 }
 
 class Room {
