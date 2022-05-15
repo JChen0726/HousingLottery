@@ -6,48 +6,59 @@ import java.util.Set;
 
 public class RoomAssigningAlgo{
     private final int[][] costMatrix;
-    private final ArrayList<Student> students; // for singlerooms
-    private ArrayList<StudentPair> studentPairs; // for double rooms
+    private final ArrayList<Object> students;
     // students variables arraylist <choices>
     private ArrayList<Room> dormRooms;
     private final int [] choicesWeight;
     private final int [] gradeWeight;
 
-    RoomAssigningAlgo(ArrayList<Student> singleStudent, ArrayList<Room> rooms){
+    RoomAssigningAlgo(ArrayList Student, ArrayList<Room> rooms){ //CHANGE TO ARRAYLIST OF OBJECTS
         // for single students
         choicesWeight = new int[]{1,3,5,7};
         gradeWeight = new int [] {1,3,5};
 
-        this.costMatrix = new int[singleStudent.size()][rooms.size()];
-        this.students = singleStudent;
+        this.costMatrix = new int[Student.size()][rooms.size()];
+        this.students = Student;
         // need to initialize the two arraylist here
 
         roomChoiceCostInput();//costs into array
         multiplyGradeWeights();
-        System.out.println(assignRooms());
 
     }
 
 
     //student[i] corresponds with row [i]
     //Room[j] corresponds with column [j]
-    private void roomChoiceCostInput(){
+    private void roomChoiceCostInput(){ //THERE'S GOTTA BE A BETTER WAY TO DO THIS
         for (int i = 0; i < students.size(); i++){
-            Student curStudent = students.get(i);
-            for (int j = 0; j < curStudent.getRoomChoices().size()  ; j++) {
-                // 0,1,2,3
-                costMatrix[i][j] = choicesWeight[3];
-                String roomName = curStudent.getRoomChoices().get(j);
-                int idx = dormRooms.indexOf(roomName); //need to fix
-                costMatrix[i][idx] = choicesWeight[j];
+            try{
+                Student curStudent = (Student) students.get(i);
+                for (int j = 0; j < curStudent.getRoomChoices().size()  ; j++) {
+                    // 0,1,2,3
+                    costMatrix[i][j] = choicesWeight[3];
+                    String roomName = curStudent.getRoomChoices().get(j);
+                    int idx = dormRooms.indexOf(roomName); //need to fix
+                    costMatrix[i][idx] = choicesWeight[j];
+                }
+            }catch(ClassCastException e){
+                StudentPair curStudent = (StudentPair) students.get(i);
+                for (int j = 0; j < curStudent.getRoomChoices().size()  ; j++) {
+                    // 0,1,2,3
+                    costMatrix[i][j] = choicesWeight[3];
+                    String roomName = curStudent.getRoomChoices().get(j);
+                    int idx = dormRooms.indexOf(roomName); //need to fix
+                    costMatrix[i][idx] = choicesWeight[j];
+                }
             }
 
         }
     }
+
+
     private void multiplyGradeWeights() {
 
         for (var ref = new Object() { int i = 0; }; ref.i < costMatrix.length; ref.i++) {
-            Student curStudent = students.get(ref.i);
+            Student curStudent = (Student) students.get(ref.i);
 
             if (curStudent.getGrade() == 12) {
                 //lambda done by bryn
@@ -61,41 +72,12 @@ public class RoomAssigningAlgo{
             }
         }
     }
-    
+
+
     private int[][] runCalculation(){
         HungarianAlgorithm hungarianAlgorithm = new HungarianAlgorithm(costMatrix);
-        return  hungarianAlgorithm.findOptimalAssignment();
+        return hungarianAlgorithm.findOptimalAssignment();
     }
-
-    private ArrayList<RoomSelection> assignRooms(){
-        ArrayList<RoomSelection> directlist= new ArrayList<>();
-        int [][] pairinglist = runCalculation();
-        Arrays.stream(pairinglist).forEach(i -> directlist.add(new RoomSelection(students.get(i[0]), dormRooms.get(i[1]))));
-        return directlist;
-    }
-}
-
-class RoomSelection {
-
-    StudentPair studentPair;
-    Student studentname;
-    
-    Room Rn;
-
-    RoomSelection(StudentPair studentPair, Room room) {
-        this.studentPair = studentPair;
-        this.Rn = room;
-    }
-    
-    RoomSelection(Student stu, Room room){
-        this.studentname = stu; 
-        this. Rn = room;
-    }
-
-    public String toString() {return studentname.getEmail() + " assigned to " + Rn;}
-
-}
-
 
 
 @SuppressWarnings("ForLoopReplaceableByForEach")
@@ -372,4 +354,5 @@ class HungarianAlgorithm {
         Arrays.fill(rowIsCovered, 0);
         Arrays.fill(colIsCovered, 0);
     }
+}
 }
