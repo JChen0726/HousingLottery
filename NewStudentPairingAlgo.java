@@ -8,9 +8,7 @@ public class NewStudentPairingAlgo { //Justin wrote
     private final ArrayList<StudentPair> paired = new ArrayList<>();
 
     NewStudentPairingAlgo(ArrayList<Student> students){
-       
         this.studentStatsMap = students;
-
     }
 
 
@@ -79,4 +77,5 @@ public class NewStudentPairingAlgo { //Justin wrote
             }
         }
     }
+
 }

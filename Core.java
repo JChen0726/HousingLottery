@@ -5,7 +5,7 @@ public class Core {
     public  ArrayList<Dorm> DORMS;
     public ArrayList<Student> STUDENTS;
     private final ArrayList<Student> NEWSTUDENT = new ArrayList<>();
-    private final ArrayList<Student> OLDSTUDENT = new ArrayList<>();
+    private final ArrayList<Object> OLDSTUDENT = new ArrayList<>();
 
     Core(ArrayList<Student> students, ArrayList<Dorm> dorms) {
         this.DORMS = dorms; //inits master list of dorms and students
@@ -32,10 +32,11 @@ public class Core {
         np.randomAssignToRooms(DORMS);
     }
 
-
     private void ReturningStudentPairing() {
-        for (Dorm dorm : DORMS) {
-            RoomAssigningAlgo oldAlgo = new RoomAssigningAlgo(OLDSTUDENT, dorm.getAllRooms());
+        // go --> go lottery; stay->stay lottery
+        for(Dorm dorms: DORMS){
+            RoomAssigningAlgo rsp = new RoomAssigningAlgo(OLDSTUDENT, dorms.getAllRooms());
+            rsp.runCalculation();
         }
     }
 }

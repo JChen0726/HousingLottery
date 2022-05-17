@@ -4,7 +4,7 @@ public class Dorm {
     private final String name;
     private final String gender;
     int totalRooms;
-    private ArrayList<Room> Rooms = new ArrayList<>();
+    private final ArrayList<Room> Rooms = new ArrayList<>();
 
     public Dorm(String name, int totalRooms, String gender) {
 
@@ -86,16 +86,11 @@ class Room {
 
 
     // change that later.
-    public void assignStudents(Student v){
+    public void assignStudents(Object v){
         isFull = true;
         Residents.add(v);
     }
 
-
-    public void assignStudents(StudentPair sp){
-        isFull = true;
-        Residents.add(sp);
-    }
 
 
     public ArrayList<Object> getResidents(){
