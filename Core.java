@@ -2,14 +2,17 @@ import java.util.ArrayList;
 
 public class Core {
 
-    public  ArrayList<Dorm> DORMS;
-    public ArrayList<Student> STUDENTS;
-    private final ArrayList<Student> NEWSTUDENT = new ArrayList<>();
-    private final ArrayList<Student> OLDSTUDENT = new ArrayList<>();
+    private static ArrayList<Dorm> DORMS;
+    public static ArrayList<Student> STUDENTS;
+    private static final ArrayList<Student> NEWSTUDENT = new ArrayList<>();
+    private static final ArrayList<Object> OLDSTUDENT = new ArrayList<>();
 
-    Core(ArrayList<Student> students, ArrayList<Dorm> dorms) {
-        this.DORMS = dorms; //inits master list of dorms and students
-        this.STUDENTS = students;
+    Core() {
+
+    }
+    public void setData(ArrayList<Student> students, ArrayList<Dorm> dorms){
+        DORMS = dorms; //inits master list of dorms and students
+        STUDENTS = students;
         for (Student student : STUDENTS) {
             if (student.getGrade()==9) {
                 NEWSTUDENT.add(student);
@@ -17,25 +20,29 @@ public class Core {
                 OLDSTUDENT.add(student);
             }
         }
-        newStudentPairing();
+        pairNewStudents();
         for(Dorm dorm : DORMS) {
             for( Room room : dorm.getAllRooms()) {
-                System.out.println(room.isOccupied());
+                //System.out.println(room.isOccupied());
             }
         }
-        ReturningStudentPairing();
+        GUI v = new GUI();
+        returningStudentHousing();
     }
 
 
-    private void newStudentPairing(){
+    private void pairNewStudents(){
         NewStudentPairingAlgo np = new NewStudentPairingAlgo(NEWSTUDENT);
         np.randomAssignToRooms(DORMS);
     }
 
 
-    private void ReturningStudentPairing() {
+    private void returningStudentHousing() {
         for (Dorm dorm : DORMS) {
-            RoomAssigningAlgo oldAlgo = new RoomAssigningAlgo(OLDSTUDENT, dorm.getAllRooms());
+            RoomAssigningAlgo algo = new RoomAssigningAlgo(OLDSTUDENT, dorm.getAllRooms());
         }
     }
+
+    public ArrayList<Student> getSTUDENTS(){return STUDENTS;}
+    public ArrayList<Dorm> getDORMS(){return DORMS;}
 }

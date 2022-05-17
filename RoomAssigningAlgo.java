@@ -12,7 +12,7 @@ public class RoomAssigningAlgo{
     private final int [] choicesWeight;
     private final int [] gradeWeight;
 
-    RoomAssigningAlgo(ArrayList Student, ArrayList<Room> rooms){ //CHANGE TO ARRAYLIST OF OBJECTS
+    RoomAssigningAlgo(ArrayList<Object> Student, ArrayList<Room> rooms){ //CHANGE TO ARRAYLIST OF OBJECTS
         // for single students
         choicesWeight = new int[]{1,3,5,7};
         gradeWeight = new int [] {1,3,5};
@@ -81,7 +81,7 @@ public class RoomAssigningAlgo{
 
 
 @SuppressWarnings("ForLoopReplaceableByForEach")
-class HungarianAlgorithm {
+static class HungarianAlgorithm {
 
     private final int[][] matrix; // initial matrix (cost matrix)
 
@@ -219,7 +219,7 @@ class HungarianAlgorithm {
                     colHasSquare[j] = 1;
                     squareInRow[i] = j; // save the row-position of the zero
                     squareInCol[j] = i; // save the column-position of the zero
-                    continue; // jump to next row
+                    // jump to next row
                 }
             }
         }

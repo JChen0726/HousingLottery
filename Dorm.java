@@ -4,7 +4,7 @@ public class Dorm {
     private final String name;
     private final String gender;
     int totalRooms;
-    private ArrayList<Room> Rooms = new ArrayList<>();
+    private final ArrayList<Room> Rooms = new ArrayList<>();
 
     public Dorm(String name, int totalRooms, String gender) {
 
@@ -25,7 +25,6 @@ public class Dorm {
 
 
     public void setRooms(ArrayList<ArrayList<String>> roomlists) {
-        System.out.println(roomlists);
         for (int i = 0; i < totalRooms; i++) {
             //lambda that returns 2 if a string is "Double" and 1 if its "Single"
             Room tempRoom = new Room(roomlists.get(i).get(0), doubleOrSingle(roomlists.get(i).get(2)));
@@ -65,8 +64,8 @@ class Room {
     private final String name;
     private final boolean isSingle;
     private boolean isFull = false;
-    private ArrayList<Object> Residents = new ArrayList<>();
-    private boolean isAvailable = true; // for administrator to choose if room is available for use or not
+    private final ArrayList<Object> Residents = new ArrayList<>();
+    private final boolean isAvailable = true; // for administrator to choose if room is available for use or not
 
     Room(String name, int numPeople){
 

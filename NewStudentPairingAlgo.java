@@ -69,11 +69,15 @@ public class NewStudentPairingAlgo { //Justin wrote
         // assign the paired new students to random dorms/rooms
         ArrayList <StudentPair> sp = findPairs(prioritize(studentStatsMap));  //RETURNS PUBLIC OBJECT???
         //for each dorm, for each room in dorm, add students to room and set room to full
-        for (int i = 0;i<sp.size();i++){
+        outer:
+        for (int i = 0;i <sp.size();i++){
             for (Dorm dorm : dorms) {
                 for (Room room : dorm.getAllRooms()) {
-                    if (!room.isSingle() && sp.get(0).getGender().equals(dorm.getGender())) {
-                        room.assignStudents(sp.get(0));
+                    if (!room.isSingle() && sp.get(i).getGender().equals(dorm.getGender()) && !room.isOccupied()){
+                        room.assignStudents(sp.get(i));
+                        sp.get(i).setRoom(room);
+                        sp.get(i).setDorm(dorm);
+                        continue outer;
                     }
                 } // potential error with this code, test heavily
             }

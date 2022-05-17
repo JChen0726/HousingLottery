@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-public class dataInput {
+public class DataInput {
 
     //for production purposes:
     private final ArrayList <Student> StudentMasterList = new ArrayList<>();
@@ -15,7 +15,7 @@ public class dataInput {
     public ArrayList <Student> getStudentMasterList() {return StudentMasterList;}
     public ArrayList <Dorm> getDormMasterList() {return DormMasterList;}
     
-    dataInput() {
+    DataInput() {
 
         inputStudentData();
         dormInput(2);
