@@ -26,6 +26,27 @@ public class RoomAssigningAlgo{
 
     }
 
+    // Vivian's code havent tested to see if itactually works.
+    private int[][] makeSquare(int [][] inputmatrix) {
+        int colCount= inputmatrix[0].length;
+        int rowCount= inputmatrix.length;
+        int [][] squareCM;
+        if(colCount<rowCount){
+            squareCM=new int[rowCount][rowCount];
+        }
+        else {
+            squareCM=new int[colCount][colCount];
+        }
+        for (int i = 0; i <squareCM.length; i++) {
+            for (int j = 0; j <squareCM[0].length; j++) {
+                try{squareCM[i][j]= this.costMatrix[i][j];}
+                catch (IndexOutOfBoundsException e){
+                    squareCM[i][j]=10000;//bigger than any number that would be in the matrix
+                }
+            }
+        }
+        return squareCM;
+    }
 
     //student[i] corresponds with row [i]
     //Room[j] corresponds with column [j]
@@ -75,9 +96,10 @@ public class RoomAssigningAlgo{
 
 
     private int[][] runCalculation(){
-        HungarianAlgorithm hungarianAlgorithm = new HungarianAlgorithm(costMatrix);
+        HungarianAlgorithm hungarianAlgorithm = new HungarianAlgorithm(makeSquare(costMatrix));
         return hungarianAlgorithm.findOptimalAssignment();
     }
+
 
 
 @SuppressWarnings("ForLoopReplaceableByForEach")

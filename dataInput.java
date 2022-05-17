@@ -16,18 +16,14 @@ public class dataInput {
     public ArrayList <Dorm> getDormMasterList() {return DormMasterList;}
     
     dataInput() {
-
         inputStudentData();
         dormInput(2);
-
     }
-
-
 
     private void inputStudentData() {
         ArrayList <ArrayList<Object>> rawStudentData = new ArrayList<>();
         try {
-            Scanner studentInput = new Scanner(new File("/Users/brynkerslake/Documents/GitHub/HousingLottery/StudentTestData.csv"));
+            Scanner studentInput = new Scanner(new File("/Users/justinchen/Documents/GitHub/HousingLottery/StudentTestData.csv"));
             studentInput.useDelimiter(",,,");
             for (int i = 0; i < 38; i++) { // 40 being the number of students
                 try {
@@ -56,13 +52,11 @@ public class dataInput {
         e.printStackTrace();}
     }
 
-
-
     private void dormInput(int numDorms){
         //olly bro what are these variable names...
         ArrayList <Dorm> list = new ArrayList<>();
         try{
-            Scanner s = new Scanner(new File("/Users/brynkerslake/Documents/GitHub/HousingLottery/RoomTestData.csv"));
+            Scanner s = new Scanner(new File("/Users/justinchen/Documents/GitHub/HousingLottery/RoomTestData.csv"));
             s.useDelimiter(",,,");
             for (int m = 0; m < numDorms; m++) { // 16 being the number of dorms
                 ArrayList <ArrayList<String>> sublist = new ArrayList<>();
@@ -98,6 +92,5 @@ public class dataInput {
             e.printStackTrace();
         }
     }
-
 }
 
