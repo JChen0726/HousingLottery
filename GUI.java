@@ -9,6 +9,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 
+
 public class GUI extends JFrame {
     JList studList1, dormList1;
     JLabel openFileLabel, studList1Label, dormList1Label, roomListLabel;
@@ -35,6 +36,7 @@ public class GUI extends JFrame {
             if(studentDataFile != null){
                 dormDataFile = openFile();
                 clearDataInputScreen();
+                initializeHousingScreen();
             }else{
                 studentDataFile = openFile();
                 openFileLabel.setText("Now, please select a properly-formatted CSV file containing Dorm Data");
@@ -48,11 +50,6 @@ public class GUI extends JFrame {
         p.add(openFileButton,c);
         c.gridy = -2;
     }
-
-
-
-
-
 
 
     private void initializeHousingScreen(){
@@ -125,15 +122,7 @@ public class GUI extends JFrame {
     }
 
 
-
-
-
-
-
-
-
     private void dormDataScreen(Dorm o){
-        System.out.println("in dorm");
         p.removeAll();
         p.repaint();
         p.revalidate();
@@ -161,23 +150,19 @@ public class GUI extends JFrame {
         roomDataScrollList.setFont(new Font("Arial",Font.BOLD,180));
         roomListLabel = new JLabel("List of Rooms");
         JSeparator s3 = new JSeparator(SwingConstants.HORIZONTAL);
+        s3.setPreferredSize(new Dimension(200,20));
         c.gridy = 0;
         c.gridx = 0;
         p.add(returnToHousingButton,c);
         c.gridy = 1;
-        p.add(roomListLabel,c);
-        c.gridy = 2;
         p.add(s3,c);
+        c.gridy = 2;
+        p.add(roomListLabel,c);
         c.gridy = 3;
         p.add(roomDataScrollList,c);
         p.revalidate();
 
     }
-
-
-
-
-
 
 
     private void studentDataScreen(Student o){
@@ -194,7 +179,7 @@ public class GUI extends JFrame {
         dormLabel = new JLabel("Dorm: "+o.getCurDorm().toString());
         roomLabel = new JLabel("Room: "+o.getCurRoom().toString());
         genderLabel = new JLabel("Gender: "+o.getGender());
-        gradeLabel = new JLabel("Grade: "+Integer.toString(o.getGrade()));
+        gradeLabel = new JLabel("Grade: "+o.getGrade());
         s3 = new JSeparator(SwingConstants.HORIZONTAL);
         c.gridy = 0;
         c.gridx = 0;
@@ -227,7 +212,7 @@ public class GUI extends JFrame {
         dormLabel = new JLabel("Dorm: "+o.getCurDorm().toString());
         roomLabel = new JLabel("Room: "+o.getCurRoom().toString());
         genderLabel = new JLabel("Gender: "+o.getGender());
-        gradeLabel = new JLabel("Grade: "+Integer.toString(o.getGrade()));
+        gradeLabel = new JLabel("Grade: "+o.getGrade());
         s3 = new JSeparator(SwingConstants.HORIZONTAL);
         c.gridy = 0;
         c.gridx = 0;
@@ -274,6 +259,7 @@ public class GUI extends JFrame {
             p.revalidate();
             initializeHousingScreen();
         });
+        s3.setPreferredSize(new Dimension(200,20));
         roomDataScrollList = new JScrollPane(residentList);
         roomDataScrollList.setPreferredSize(new Dimension(200,300));
         roomDataScrollList.setFont(new Font("Arial",Font.BOLD,180));
@@ -283,22 +269,14 @@ public class GUI extends JFrame {
         c.gridx = 0;
         p.add(returnToHousingButton,c);
         c.gridy = 1;
-        p.add(roomListLabel,c);
-        c.gridy = 2;
         p.add(s3,c);
+        c.gridy=2;
+        p.add(roomListLabel,c);
         c.gridy = 3;
         p.add(roomDataScrollList,c);
         p.revalidate();
 
     }
-
-
-
-
-
-
-
-
 
 
     private void clearDataInputScreen() {
@@ -307,14 +285,6 @@ public class GUI extends JFrame {
         p.repaint();
         initializeHousingScreen();
     }
-
-
-
-
-
-
-
-
 
 
     GUI() { //do not rename or everything will catastrophically break thank you very much//gbl is layout manager for JPanel, much better than traditional layout
@@ -327,28 +297,19 @@ public class GUI extends JFrame {
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
-
+        UIManager.put("Label.font", new Font("Arial", Font.BOLD, 15));
+        UIManager.put("Button.font", new Font("Arial", Font.PLAIN, 15));
         c.gridy = 0;
         setTitle("Student Housing Panel");
         setSize(800,500);               //basic panel setup
         setDefaultLookAndFeelDecorated(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        //initializeDataInputScreenComponents();
-        initializeHousingScreen();
-
-        //dataInputPanel.add(scrollableList, c);
+        initializeDataInputScreenComponents();
         add(p,BorderLayout.CENTER);
         setVisible(true);
 
     }
-
-
-
-
-
-
-
 
 
     private File openFile() {
